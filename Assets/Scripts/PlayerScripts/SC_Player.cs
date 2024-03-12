@@ -28,11 +28,30 @@ public class SC_Player : MonoBehaviour
 
         movement.Normalize();
 
+        //moveSpeed = Mathf.Lerp(Camera.main.fieldOfView, targetFov, fovLerpTimer * Time.deltaTime);
 
     }
 
     void FixedUpdate()
     {
-        myRigidbody.MovePosition(myRigidbody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        //myRigidbody.MovePosition(myRigidbody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        myRigidbody.AddForce(movement * moveSpeed);
+
+        Vector3 flatVelocity = new Vector3(myRigidbody.velocity.x, 0, myRigidbody.velocity.z);
+
+        /*        if (flatVelocity.magnitude > baseMoveSpeed + 0.4f)
+                {
+
+                }*/
+
+        //limit velocity if needed
+        if (flatVelocity.magnitude > moveSpeed)
+        {
+            Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+            myRigidbody.velocity = new Vector3(limitedVelocity.x, myRigidbody.velocity.y, limitedVelocity.z);
+            //print(limitedVelocity.magnitude);
+        }
     }
+
+
 }
