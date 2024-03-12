@@ -9,7 +9,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _enemySpeed;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
     }
