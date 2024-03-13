@@ -789,6 +789,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SlugEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7829226728970144800, guid: ee3934b4cfa67b2458f28ee5efb4752a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -880,7 +884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1485733000
 BoxCollider:
   m_ObjectHideFlags: 0
