@@ -202,3 +202,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _despawnPoint: -60
   _enemySpeed: 250
+  _health: 1

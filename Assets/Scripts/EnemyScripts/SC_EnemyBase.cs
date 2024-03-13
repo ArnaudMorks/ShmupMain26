@@ -9,6 +9,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint;
     [SerializeField] protected float _enemySpeed;
+    [SerializeField] protected int _health;
 
     protected virtual void Awake()
     {
@@ -20,5 +21,22 @@ public abstract class SC_EnemyBase : MonoBehaviour
        // Destroy the gameObject if it goes past a certain point defined in the inspector window
         if(transform.position.z <= _despawnPoint)
             Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        TakeDamage();
+    }
+
+    private void TakeDamage()
+    {
+        // Actually take damage
+        _health--;
+
+        // Check if the enemy is dead
+        if(_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
