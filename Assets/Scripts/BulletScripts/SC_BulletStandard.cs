@@ -24,4 +24,5 @@ public class SC_BulletStandard : MonoBehaviour
     {
         transform.position += transform.forward * projectileSpeed * Time.deltaTime;
     }
+
 }
