@@ -28,7 +28,7 @@ public class SC_ShooterEnemy : SC_EnemyBase
             // Instantiate the prefab amount of times we want in a burst and wait the total burst time divided by the burst amount after every shot
             for(int i = 0; i < _burstAmount; i++)
             {
-                Instantiate(_bulletPrefab, _bulletSpawnPoint);
+                Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
 
                 yield return new WaitForSeconds(_burstTime / _burstAmount);
             }
