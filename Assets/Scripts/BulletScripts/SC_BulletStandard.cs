@@ -14,7 +14,7 @@ public class SC_BulletStandard : MonoBehaviour
         Destroy(gameObject, despawnTimer);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
