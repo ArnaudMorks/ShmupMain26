@@ -25,4 +25,8 @@ public class SC_BulletStandard : MonoBehaviour
         transform.position += transform.forward * projectileSpeed * Time.deltaTime;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
+    }
 }
