@@ -50,3 +50,4 @@ MonoBehaviour:
   enemyTypeArray:
   - {fileID: 4713458690884242320, guid: fcee05d2aca31fa4196b15b2929972a1, type: 3}
   - {fileID: 7829226728970144800, guid: ee3934b4cfa67b2458f28ee5efb4752a, type: 3}
+  - {fileID: 902891095027658363, guid: 7760216958abaf041ba2c416d27f3619, type: 3}
