@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3308944395936225237}
   - component: {fileID: 2097293286217205738}
   - component: {fileID: 282689309985351033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: KamikazeEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,6 +98,7 @@ MonoBehaviour:
   _despawnPoint: -60
   _enemySpeed: 250
   _health: 1
+  _searchDelay: 0.5
   _enemyStopDrag: 2.5
   _searchRadius: 15
   _playerLookTime: 1.5
@@ -114,7 +115,7 @@ GameObject:
   - component: {fileID: 7314704869159384011}
   - component: {fileID: 2098850404219369630}
   - component: {fileID: 8158936840718661331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

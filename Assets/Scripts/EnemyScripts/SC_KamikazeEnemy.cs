@@ -12,9 +12,9 @@ public enum KamikazeState
 public class SC_KamikazeEnemy : SC_EnemyBase
 {
     private KamikazeState _kamikazeState;
-    private float _searchDelay = 1f;
     private Transform _playerTransform;
 
+    [SerializeField]private float _searchDelay;
     [SerializeField] private float _enemyStopDrag;
     [SerializeField] private float _searchRadius;
     [SerializeField] private float _playerLookTime;

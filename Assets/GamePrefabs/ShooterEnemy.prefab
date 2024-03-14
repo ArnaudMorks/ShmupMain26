@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4560903678294409186}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 2812724135117436067}
   - component: {fileID: 2643528169718811246}
   - component: {fileID: 1733723627770000967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShooterEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   _enemySpeed: 150
   _health: 2
   _bulletSpawnPoint: {fileID: 4560903678294409186}
-  _bulletPrefab: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
+  _bulletPrefab: {fileID: 4395629006073834111, guid: df3428c1d6539e94cae295abf9f3cbc6, type: 3}
   _burstAmount: 3
   _burstTime: 0.2
   _burstInterval: 1
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5184246783341214426}
   - component: {fileID: 3226343170901705686}
   - component: {fileID: 8582082921613758369}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShooterEnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

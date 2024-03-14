@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3056186696351962853}
   - component: {fileID: 7406415348006234766}
   - component: {fileID: 4677202144422741527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4941836885065173384}
   - component: {fileID: 2853080647320113602}
   - component: {fileID: 6920405949012871883}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SlugEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

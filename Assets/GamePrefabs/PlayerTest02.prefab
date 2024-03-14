@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6180101353443941179}
   - component: {fileID: 3725687140416036046}
   - component: {fileID: 37880853643764039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-2 Copy of rear engine thing-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3423635319856722340}
   - component: {fileID: 7938582157048311742}
   - component: {fileID: 7294210407471146986}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - hover engine-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4924099562446896659}
   - component: {fileID: 8274654226593300557}
   - component: {fileID: 8983008390933420585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - gun turret-1 2cm x4 guns^gun turret mk1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,8 @@ GameObject:
   - component: {fileID: 8624818123083700070}
   - component: {fileID: 1223686376581935105}
   - component: {fileID: 5440232786251321995}
-  m_Layer: 0
+  - component: {fileID: 4826653804729242660}
+  m_Layer: 6
   m_Name: PlayerTest02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +310,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1223686376581935105
 MonoBehaviour:
@@ -341,6 +342,27 @@ MonoBehaviour:
   projectile: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
   rateOfFire: 0.2
   fireRateTimer: 0
+--- !u!65 &4826653804729242660
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988990318104523328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.8568821}
+  m_Center: {x: 0, y: 0, z: 0.258708}
 --- !u!1 &1554768761334186993
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +374,7 @@ GameObject:
   - component: {fileID: 5133157783736048147}
   - component: {fileID: 5416356654813723761}
   - component: {fileID: 1224498831668921853}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - cockpit glass-1 cockpit dome base^space ship M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -435,7 +457,7 @@ GameObject:
   - component: {fileID: 3508128754609740872}
   - component: {fileID: 2349787417296206001}
   - component: {fileID: 1945468697983784178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-2 engine tube mk1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +540,7 @@ GameObject:
   - component: {fileID: 6212165865356314114}
   - component: {fileID: 5043440843119171869}
   - component: {fileID: 6764244036098051955}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - 7cm cannon-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +623,7 @@ GameObject:
   - component: {fileID: 5554955507307949043}
   - component: {fileID: 5284118885180918083}
   - component: {fileID: 6490801864278647397}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-4 engine tube mk1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +706,7 @@ GameObject:
   - component: {fileID: 9085683733802873566}
   - component: {fileID: 5749808421704796647}
   - component: {fileID: 9093978713872305135}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - gun turret-1 turret dome mk1^gun turret-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +789,7 @@ GameObject:
   - component: {fileID: 4763545628593526735}
   - component: {fileID: 657144636840073119}
   - component: {fileID: 6520749447270215549}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - bomb bay door-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +872,7 @@ GameObject:
   - component: {fileID: 2667546326958839024}
   - component: {fileID: 7996854965171868296}
   - component: {fileID: 3625816767622127501}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - 7cm cannon-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -933,7 +955,7 @@ GameObject:
   - component: {fileID: 4101746806595525949}
   - component: {fileID: 6703741729050829626}
   - component: {fileID: 8077277649683938289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - hover engine-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1016,7 +1038,7 @@ GameObject:
   - component: {fileID: 5432887540791149347}
   - component: {fileID: 1113600792548302794}
   - component: {fileID: 3285875167313641733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-1 engine tube mk1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,7 +1121,7 @@ GameObject:
   - component: {fileID: 7967453892924618826}
   - component: {fileID: 2308641354094838660}
   - component: {fileID: 1071137943096773297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - hover engine-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1204,7 @@ GameObject:
   - component: {fileID: 1852105959698436200}
   - component: {fileID: 5824920939708522058}
   - component: {fileID: 1839239641277546301}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - cockpit glass-1 Part2^cockpit glass-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1287,7 @@ GameObject:
   - component: {fileID: 4843480111389447394}
   - component: {fileID: 8282549435643606392}
   - component: {fileID: 5373490092284074992}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - gun turret-1 turret basket-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1348,7 +1370,7 @@ GameObject:
   - component: {fileID: 3551667097962604125}
   - component: {fileID: 5311904208584443773}
   - component: {fileID: 597973150311895091}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - hover engine-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1431,7 +1453,7 @@ GameObject:
   - component: {fileID: 991989672603155986}
   - component: {fileID: 1444194845994548065}
   - component: {fileID: 2491947512159529505}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - rear dome mk 1^space ship MK1-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1514,7 +1536,7 @@ GameObject:
   - component: {fileID: 1617437863236029710}
   - component: {fileID: 9218964399974949352}
   - component: {fileID: 1573326333022349183}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-1 Copy of rear engine thing-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1597,7 +1619,7 @@ GameObject:
   - component: {fileID: 2680039149564701112}
   - component: {fileID: 5442272025350800210}
   - component: {fileID: 3765224041347285000}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-3 Copy of rear engine thing-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1702,7 @@ GameObject:
   - component: {fileID: 8282520801824535475}
   - component: {fileID: 5754334143144737440}
   - component: {fileID: 2370444180236990632}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - 7cm cannon-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1763,7 +1785,7 @@ GameObject:
   - component: {fileID: 1026715112594104173}
   - component: {fileID: 600243706074477541}
   - component: {fileID: 2128304630668540962}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - bomb bay door-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1846,7 +1868,7 @@ GameObject:
   - component: {fileID: 9028421797613366827}
   - component: {fileID: 4298777717697336210}
   - component: {fileID: 5329340124833375160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-3 engine tube mk1-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1927,7 +1949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5070925901035289527}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +2007,7 @@ GameObject:
   - component: {fileID: 5975392921927043754}
   - component: {fileID: 3891236248029369306}
   - component: {fileID: 635963091020215205}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - space ship mk 1 hull-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2068,7 +2090,7 @@ GameObject:
   - component: {fileID: 5095754027680598535}
   - component: {fileID: 6329009514312797299}
   - component: {fileID: 1183247950367843973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - engine mk1-4 Copy of rear engine thing-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2151,7 +2173,7 @@ GameObject:
   - component: {fileID: 6926344164729455403}
   - component: {fileID: 1582727245174960189}
   - component: {fileID: 2482367064015644943}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: space ship MK1 - 7cm cannon-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
