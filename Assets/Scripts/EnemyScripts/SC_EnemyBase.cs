@@ -6,10 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class SC_EnemyBase : MonoBehaviour
 {
+    private Coroutine _damageCoroutine = null;
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint;
     [SerializeField] protected float _enemySpeed;
     [SerializeField] protected int _health;
+    [SerializeField] protected float _damageDelay;
 
     protected virtual void Awake()
     {
@@ -25,18 +27,22 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        TakeDamage();
+        _damageCoroutine ??= StartCoroutine(TakeDamage());
     }
 
-    private void TakeDamage()
+    private IEnumerator TakeDamage()
     {
         // Actually take damage
         _health--;
 
         // Check if the enemy is dead
-        if(_health <= 0)
+        if (_health <= 0)
         {
             Destroy(gameObject);
         }
+
+        yield return null;
+
+        _damageCoroutine = null;
     }
 }

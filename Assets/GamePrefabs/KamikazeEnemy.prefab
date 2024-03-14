@@ -82,7 +82,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!135 &1870195736851624406
 SphereCollider:
@@ -120,9 +120,8 @@ MonoBehaviour:
   _despawnPoint: -60
   _enemySpeed: 250
   _health: 1
-  _searchDelay: 0.5
+  _damageDelay: 0
   _enemyStopDrag: 2.5
-  _searchRadius: 15
   _playerLookTime: 1.5
   _destroyTime: 20
 --- !u!1 &3605549616056792878
