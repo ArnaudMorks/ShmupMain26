@@ -17,6 +17,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
 
     [SerializeField] private float _enemyStopDrag;
     [SerializeField] private float _playerLookTime;
+    [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _destroyTime;
 
     private void Start()
@@ -31,7 +32,11 @@ public class SC_KamikazeEnemy : SC_EnemyBase
         base.Update();
 
         if(_kamikazeState == KamikazeState.lookingAtPlayer)
-            transform.LookAt(_playerTransform);
+        {
+            Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - transform.position);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetDirection, Time.deltaTime * _rotationSpeed);
+        }
     }
 
     private IEnumerator BeginKamikaze()
