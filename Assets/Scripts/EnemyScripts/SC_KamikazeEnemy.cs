@@ -31,9 +31,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
         base.Update();
 
         if(_kamikazeState == KamikazeState.lookingAtPlayer)
-        {
             transform.LookAt(_playerTransform);
-        }
     }
 
     private IEnumerator BeginKamikaze()

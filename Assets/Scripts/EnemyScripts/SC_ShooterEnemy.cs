@@ -12,11 +12,14 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
     private void Start()
     {
-        // Move forward
-        _rigidBody.AddForce(transform.forward * _enemySpeed);
-
         // Start shooting projectiles in bursts
         StartCoroutine(ShootBullets());
+    }
+
+    private void FixedUpdate()
+    {
+        // Move forward
+        _rigidBody.MovePosition(transform.position + -_enemySpeed * Time.deltaTime * Vector3.forward);
     }
 
     private IEnumerator ShootBullets()

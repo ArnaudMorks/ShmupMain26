@@ -111,9 +111,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1733723627770000967
 MonoBehaviour:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _despawnPoint: -60
-  _enemySpeed: 150
+  _enemySpeed: 3
   _health: 2
   _damageDelay: 0
   _bulletSpawnPoint: {fileID: 4560903678294409186}
