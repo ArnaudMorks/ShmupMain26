@@ -10,8 +10,10 @@ public class SC_ShooterEnemy : SC_EnemyBase
     [SerializeField] private float _burstTime;
     [SerializeField] private float _burstInterval;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         // Start shooting projectiles in bursts
         StartCoroutine(ShootBullets());
     }

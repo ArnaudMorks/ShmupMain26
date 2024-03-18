@@ -20,8 +20,10 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _destroyTime;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _kamikazeState = KamikazeState.searching;
 
         _rigidBody.AddForce(transform.forward * _enemySpeed);

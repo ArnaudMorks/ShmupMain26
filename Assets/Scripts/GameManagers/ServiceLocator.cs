@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class ServiceLocator : MonoBehaviour
 {
-    public static ServiceLocator main { get; private set; }
+    public static ServiceLocator Main { get; private set; }
 
-    public SC_ScoreManager scoreManager { get; private set; }
+    public SC_ScoreManager ScoreManager { get; private set; }
+    public SC_ScoreUIManager ScoreUIManager { get; private set; }
 
     private void Awake()
     {
-        if(main != null && main != this)
+        if(Main != null && Main != this)
         {
             // Destroy this instance of ServiceLocator if another instance exists as there can be only one instance
             Destroy(this);
             return;
         }
 
-        main = this;
+        Main = this;
 
-        scoreManager = GetComponentInChildren<SC_ScoreManager>();
+        ScoreManager = GetComponentInChildren<SC_ScoreManager>();
+        ScoreUIManager = GetComponentInChildren<SC_ScoreUIManager>();
     }
 }

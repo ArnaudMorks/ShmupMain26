@@ -204,3 +204,4 @@ MonoBehaviour:
   _enemySpeed: 250
   _health: 1
   _damageDelay: 0
+  _scoreOnDeath: 25

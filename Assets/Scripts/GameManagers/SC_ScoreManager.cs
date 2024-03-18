@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class SC_ScoreManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _score;
+
+    public void ModifyScore(int amount)
     {
-        
+        _score += amount;
+        ServiceLocator.Main.ScoreUIManager.UpdateScoreUI(_score);
     }
 
-    // Update is called once per frame
-    void Update()
+    public int GetScore()
     {
-        
+        return _score;
     }
 }

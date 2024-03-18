@@ -131,6 +131,7 @@ MonoBehaviour:
   _enemySpeed: 3
   _health: 2
   _damageDelay: 0
+  _scoreOnDeath: 100
   _bulletSpawnPoint: {fileID: 4560903678294409186}
   _bulletPrefab: {fileID: 4395629006073834111, guid: df3428c1d6539e94cae295abf9f3cbc6, type: 3}
   _burstAmount: 3

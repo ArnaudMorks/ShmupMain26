@@ -121,6 +121,7 @@ MonoBehaviour:
   _enemySpeed: 250
   _health: 1
   _damageDelay: 0
+  _scoreOnDeath: 25
   _enemyStopDrag: 2.5
   _playerLookTime: 1.5
   _rotationSpeed: 5

@@ -6,16 +6,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class SC_EnemyBase : MonoBehaviour
 {
+    private SC_ScoreManager _scoreManager;
+
     private Coroutine _damageCoroutine = null;
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint;
     [SerializeField] protected float _enemySpeed;
     [SerializeField] protected int _health;
     [SerializeField] protected float _damageDelay;
+    [SerializeField] protected int _scoreOnDeath;
 
     protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
+    }
+
+    protected virtual void Start()
+    {
+        _scoreManager = ServiceLocator.Main.ScoreManager;
     }
 
     protected virtual void Update()
@@ -38,6 +46,8 @@ public abstract class SC_EnemyBase : MonoBehaviour
         // Check if the enemy is dead
         if (_health <= 0)
         {
+            _scoreManager.ModifyScore(_scoreOnDeath);
+
             Destroy(gameObject);
         }
 
