@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 8624818123083700070}
   - component: {fileID: 1223686376581935105}
   - component: {fileID: 5440232786251321995}
+  - component: {fileID: 5878871018745026832}
   - component: {fileID: 4826653804729242660}
   m_Layer: 6
   m_Name: PlayerTest02
@@ -342,6 +343,21 @@ MonoBehaviour:
   projectile: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
   rateOfFire: 0.2
   fireRateTimer: 0
+--- !u!114 &5878871018745026832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988990318104523328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225957c69ebd36e44b84af1db3335e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  _starterHealth: 3
+  _damageDelay: 1
 --- !u!65 &4826653804729242660
 BoxCollider:
   m_ObjectHideFlags: 0

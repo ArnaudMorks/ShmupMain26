@@ -33,7 +33,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     {
         base.Update();
 
-        if(_kamikazeState == KamikazeState.lookingAtPlayer)
+        if(_kamikazeState == KamikazeState.lookingAtPlayer && _playerTransform != null)
         {
             Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - transform.position);
 
