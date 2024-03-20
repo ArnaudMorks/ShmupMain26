@@ -125,6 +125,7 @@ MonoBehaviour:
   _enemyStopDrag: 2.5
   _playerLookTime: 1.5
   _rotationSpeed: 5
+  _attackMoveMultiplier: 2.5
   _destroyTime: 20
 --- !u!1 &3605549616056792878
 GameObject:

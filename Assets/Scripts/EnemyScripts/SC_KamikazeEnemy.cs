@@ -18,6 +18,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     [SerializeField] private float _enemyStopDrag;
     [SerializeField] private float _playerLookTime;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _attackMoveMultiplier;
     [SerializeField] private float _destroyTime;
 
     protected override void Start()
@@ -54,7 +55,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
 
         // Stop looking at the player and start attacking
         _kamikazeState = KamikazeState.attacking;
-        _rigidBody.AddForce(transform.forward * _enemySpeed);
+        _rigidBody.AddForce(_attackMoveMultiplier * _enemySpeed * transform.forward);
 
         // Destroy the enemy after a certain amount of time because the enemy has the possibility to never reach the destroy threshold
         Destroy(gameObject, _destroyTime);
