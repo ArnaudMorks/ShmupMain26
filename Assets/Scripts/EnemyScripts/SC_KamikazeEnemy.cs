@@ -64,7 +64,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collider we hit has the player component
-        if (other.TryGetComponent<SC_Player>(out _))
+        if (other.TryGetComponent<SC_EmptyDetectionReference>(out _))
         {
             // We need the transform of the player to look at it
             _playerTransform = other.transform;

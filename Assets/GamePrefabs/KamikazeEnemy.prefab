@@ -122,6 +122,8 @@ MonoBehaviour:
   _health: 1
   _damageDelay: 0
   _scoreOnDeath: 25
+  _collider: {fileID: 3308944395936225237}
+  _searchRadius: {fileID: 1870195736851624406}
   _enemyStopDrag: 2.5
   _playerLookTime: 1.5
   _rotationSpeed: 5

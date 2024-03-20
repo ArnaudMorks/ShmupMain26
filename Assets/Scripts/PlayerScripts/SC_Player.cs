@@ -30,6 +30,28 @@ public class SC_Player : MonoBehaviour
 
         //moveSpeed = Mathf.Lerp(Camera.main.fieldOfView, targetFov, fovLerpTimer * Time.deltaTime);
 
+
+        //MovmentBounds
+        if (transform.position.x >= 23.29)      //max width x position
+        {
+            if (movement.x > 0) { movement.x = 0; }
+        }
+
+        if (transform.position.x <= -23.29)      //min width x position
+        {
+            if (movement.x < 0) { movement.x = 0; }
+        }
+
+        if (transform.position.z >= 17.4)      //max height y position
+        {
+            if (movement.z > 0) { movement.z = 0; }
+        }
+
+        if (transform.position.z <= -17.4)      //min height y position
+        {
+            if (movement.z < 0) { movement.z = 0; }
+        }
+
     }
 
     void FixedUpdate()
