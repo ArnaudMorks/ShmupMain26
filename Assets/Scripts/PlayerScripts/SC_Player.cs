@@ -9,7 +9,7 @@ public class SC_Player : MonoBehaviour
 
     [SerializeField] private float baseMoveSpeed = 5f;
     [SerializeField] private float moveSpeed;
-    Vector3 movement;
+    private Vector3 movement;
 
 
     void Start()
@@ -32,22 +32,22 @@ public class SC_Player : MonoBehaviour
 
 
         //MovmentBounds
-        if (transform.position.x >= 23.29)      //max width x position
+        if (transform.position.x >= 22)      //max width x position
         {
             if (movement.x > 0) { movement.x = 0; }
         }
 
-        if (transform.position.x <= -23.29)      //min width x position
+        if (transform.position.x <= -22)      //min width x position
         {
             if (movement.x < 0) { movement.x = 0; }
         }
 
-        if (transform.position.z >= 17.4)      //max height y position
+        if (transform.position.z >= 15.8)      //max height y position
         {
             if (movement.z > 0) { movement.z = 0; }
         }
 
-        if (transform.position.z <= -17.4)      //min height y position
+        if (transform.position.z <= -15.8)      //min height y position
         {
             if (movement.z < 0) { movement.z = 0; }
         }

@@ -63,7 +63,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1223686376581935105
 MonoBehaviour:
@@ -93,8 +93,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
-  rateOfFire: 0.2
+  baseRateOfFire: 0.4
+  rateOfFire: 0.4
   fireRateTimer: 0
+  mainPlayerBulletSpeed: 30
 --- !u!114 &5878871018745026832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
