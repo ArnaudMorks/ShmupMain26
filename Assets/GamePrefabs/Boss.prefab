@@ -107,7 +107,7 @@ MonoBehaviour:
   _missileSpawnLocations:
   - {fileID: 5394434033423992678}
   - {fileID: 2089331621792794585}
-  _burstAmount: 20
+  _burstAmount: 300
   _burstTime: 3
 --- !u!1 &2604052096180118689
 GameObject:
