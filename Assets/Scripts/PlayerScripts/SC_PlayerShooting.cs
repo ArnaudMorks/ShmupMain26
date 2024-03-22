@@ -4,6 +4,29 @@ using UnityEngine;
 
 public class SC_PlayerShooting : MonoBehaviour
 {
+    [Header("Bullet Speed")]            //was eerst een ander script
+    [SerializeField] private float minPlayerBaseBulletSpeed;
+    public float MinPlayerBaseBulletSpeed
+    {
+        get { return minPlayerBaseBulletSpeed; }
+    }
+
+    [SerializeField] private float currentPlayerBaseBulletSpeed;
+    public float CurrentPlayerBaseBulletSpeed
+    {
+        get { return currentPlayerBaseBulletSpeed; }
+        set { currentPlayerBaseBulletSpeed = value; }       //wordt aangepast door de "SC_PowerupBulletSpeed"
+    }
+
+    [SerializeField] private float maxPlayerBaseBulletSpeed;
+    public float MaxPlayerBaseBulletSpeed
+    {
+        get { return maxPlayerBaseBulletSpeed; }
+    }
+
+    [Header("The rest")]
+    [SerializeField] private SC_PoolPlayerBullets bulletPool = null;
+
     [SerializeField] private GameObject projectile;
 
     [SerializeField] private float rateOfFire;

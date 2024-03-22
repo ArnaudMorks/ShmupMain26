@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8624818123083700070}
   - component: {fileID: 1223686376581935105}
   - component: {fileID: 5440232786251321995}
-  - component: {fileID: 5878871018745026832}
   - component: {fileID: 4826653804729242660}
+  - component: {fileID: 7590300984568948506}
   m_Layer: 6
   m_Name: PlayerTest02
   m_TagString: Untagged
@@ -92,25 +92,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70abe96725abbc449afabe8e5881bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPlayerBaseBulletSpeed: 0
+  currentPlayerBaseBulletSpeed: 0
+  maxPlayerBaseBulletSpeed: 0
+  bulletPool: {fileID: 0}
   projectile: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
   rateOfFire: 0.2
   fireRateTimer: 0
---- !u!114 &5878871018745026832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988990318104523328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225957c69ebd36e44b84af1db3335e02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 0
-  _starterHealth: 3
-  _damageDelay: 1
-  _canTakeDamage: 0
 --- !u!65 &4826653804729242660
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -132,6 +120,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1.8568821}
   m_Center: {x: 0, y: 0, z: 0.258708}
+--- !u!114 &7590300984568948506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988990318104523328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225957c69ebd36e44b84af1db3335e02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3
+  _starterHealth: 3
+  _damageDelay: 0.4
+  _canTakeDamage: 1
 --- !u!1 &5799839852957345475
 GameObject:
   m_ObjectHideFlags: 0
