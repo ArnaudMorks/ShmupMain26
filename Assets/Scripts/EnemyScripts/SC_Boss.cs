@@ -29,6 +29,12 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private float _dashTime;
     [SerializeField] private float _retreatSpeed;
 
+    [Header("Missiles")]
+    [SerializeField] private GameObject _missilePrefab;
+    [SerializeField] private Transform[] _missileSpawnLocations;
+    [SerializeField] private int _burstAmount;
+    [SerializeField] private float _burstTime;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -44,7 +50,7 @@ public class SC_Boss : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            StartCoroutine(ChargeAttack());
+            StartCoroutine(ShootMissiles());
         }
     }
 
@@ -97,6 +103,20 @@ public class SC_Boss : MonoBehaviour
             }
 
             yield return new WaitForSeconds(Time.deltaTime);
+        }
+    }
+
+    private IEnumerator ShootMissiles()
+    {
+        for(int i = 0; i < _burstAmount; i++)
+        {
+            for(int j = 0; j < _missileSpawnLocations.Length; j++)
+            {
+                GameObject missile = Instantiate(_missilePrefab, _missileSpawnLocations[j].position, _missileSpawnLocations[j].rotation, null);
+                missile.GetComponent<SC_HomingMissile>().SetTarget(_playerTransform);
+            }
+
+            yield return new WaitForSeconds(_burstTime / _burstAmount);
         }
     }
 
