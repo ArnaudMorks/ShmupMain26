@@ -92,17 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70abe96725abbc449afabe8e5881bfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPlayerBaseBulletSpeed: 24
-  currentPlayerBaseBulletSpeed: 0
-  maxPlayerBaseBulletSpeed: 7
-  bulletPool: {fileID: 0}
   projectile: {fileID: 4395629006073834111, guid: 750a087bafbac06469d410e74b6cf686, type: 3}
   rateOfFire: 0.2
   fireRateTimer: 0
-<<<<<<< Updated upstream
-=======
-  twoTurretModeBasePlayer: 0
->>>>>>> Stashed changes
 --- !u!114 &5878871018745026832
 MonoBehaviour:
   m_ObjectHideFlags: 0
