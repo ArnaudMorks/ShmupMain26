@@ -26,7 +26,7 @@ public class SC_PowerupBase : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        
+
     }
 
 }

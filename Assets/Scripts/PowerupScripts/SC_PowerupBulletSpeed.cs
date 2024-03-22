@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SC_PowerupBulletSpeed : SC_PowerupBase
 {
-    private SC_ProjectileSpeedPlayer projectilePlayerManager;
+    private SC_PlayerShooting playerShooter;
 
     [SerializeField] private float bulletSpeedIncreaseRate;     //een * boven de nul
 
     protected override void Start()
     {
         base.Start();
-        projectilePlayerManager = FindObjectOfType<SC_ProjectileSpeedPlayer>();
+        playerShooter = FindObjectOfType<SC_PlayerShooting>();
     }
 
 
@@ -29,6 +29,6 @@ public class SC_PowerupBulletSpeed : SC_PowerupBase
 
     private void IncreaseBulletSpeed()
     {
-        projectilePlayerManager.CurrentPlayerBaseBulletSpeed += (projectilePlayerManager.MaxPlayerBaseBulletSpeed - projectilePlayerManager.CurrentPlayerBaseBulletSpeed) / bulletSpeedIncreaseRate;
+        playerShooter.CurrentPlayerBaseBulletSpeed += (playerShooter.MaxPlayerBaseBulletSpeed - playerShooter.CurrentPlayerBaseBulletSpeed) / bulletSpeedIncreaseRate;
     }
 }
