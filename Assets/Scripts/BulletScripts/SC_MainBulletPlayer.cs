@@ -7,13 +7,12 @@ public class SC_MainBulletPlayer : MonoBehaviour
 
     //private float despawnTimer = 3;
 
-    private SC_PlayerShooting projectilePlayerManager;
+    //private SC_PlayerShooting projectilePlayerManager;
     [SerializeField] private float mainPlayerBulletSpeed;
-
 
     void Start()
     {
-        projectilePlayerManager = FindObjectOfType<SC_PlayerShooting>();
+        //projectilePlayerManager = FindObjectOfType<SC_PlayerShooting>();
 
         //mainPlayerBulletSpeed = projectilePlayerManager.CurrentPlayerBaseBulletSpeed;
 
@@ -29,6 +28,8 @@ public class SC_MainBulletPlayer : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        //print(mainPlayerBulletSpeed);
     }
 
 
@@ -37,5 +38,5 @@ public class SC_MainBulletPlayer : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetSpeed(float newSpeed) { mainPlayerBulletSpeed = newSpeed; }
+    public void SetSpeed(float newSpeed) { mainPlayerBulletSpeed = newSpeed; }      //wordt bepaald in de "SC_PlayerShooting" en de "SC_PoolPlayerBullets"
 }

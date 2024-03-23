@@ -24,6 +24,11 @@ public class SC_PlayerShooting : MonoBehaviour
         get { return maxPlayerBaseBulletSpeed; }
     }
 
+    private bool superShooterMode = false;
+    [SerializeField] private float superRateOfFire;
+    [SerializeField] private float superBulletSpeed;
+
+
     [Header("The rest")]
     [SerializeField] private SC_PoolPlayerBullets bulletPool = null;
 
@@ -52,6 +57,8 @@ public class SC_PlayerShooting : MonoBehaviour
 
     private void Start()
     {
+        currentPlayerBaseBulletSpeed = minPlayerBaseBulletSpeed;        //in het begin gaat de bullet de minimale snelheid MISSCHIEN LATER VERANDEREN
+        bulletPool = FindObjectOfType<SC_PoolPlayerBullets>();
         rateOfFire = baseRateOfFire;        //hoe de logica werkt; misschien anders wegens respawns of iets dergelijks
     }
 
@@ -61,42 +68,63 @@ public class SC_PlayerShooting : MonoBehaviour
 
         FireProjectile();
 
-
+        //print(currentPlayerBaseBulletSpeed);
     }
 
 
     private void FireProjectile()
     {
-        if (fireRateTimer <= 0 && holdingFireButton)                //zodra "fireRateTimer" "0" of minder is kan je schieten
+        if (superShooterMode == false)
         {
-            ProjectileBaseSpawnLocation();
-            fireRateTimer = rateOfFire;
+            if (fireRateTimer <= 0 && holdingFireButton)                //zodra "fireRateTimer" "0" of minder is kan je schieten
+            {
+                ProjectileBaseSpawnLocation();
+                fireRateTimer = rateOfFire;
+            }
+            else if (fireRateTimer > 0)
+            {
+                fireRateTimer -= Time.deltaTime;
+            }
         }
-        else if (fireRateTimer > 0)
+        else if (superShooterMode == true)          //snellere fire rate
         {
-            fireRateTimer -= Time.deltaTime;
+            if (fireRateTimer <= 0 && holdingFireButton)                //zodra "fireRateTimer" "0" of minder is kan je schieten
+            {
+                ProjectileBaseSpawnLocation();
+                fireRateTimer = superRateOfFire;
+            }
+            else if (fireRateTimer > 0)
+            {
+                fireRateTimer -= Time.deltaTime;
+            }
         }
 
-        Vector3 turretOne = new Vector3(transform.position.x, transform.position.y - 0.46f, transform.position.z);
-        Vector3 turretTwo = new Vector3(transform.position.x, transform.position.y + 0.46f, transform.position.z);
     }
 
     private void ProjectileBaseSpawnLocation()
     {
-        if (twoTurretModeBasePlayer == false) { Instantiate(projectile, transform.position, transform.rotation); }
-        else
-        {
-            Vector3 turretOne = new Vector3(transform.position.x - 0.46f, transform.position.y, transform.position.z);
-            Vector3 turretTwo = new Vector3(transform.position.x + 0.46f, transform.position.y, transform.position.z);      //getal is hoeveel van het midden af de kogel wordt afgeschoten
+        SC_MainBulletPlayer playerBullet;
+        Vector3 turretOne = new Vector3(transform.position.x - 0.46f, transform.position.y, transform.position.z);
+        Vector3 turretTwo = new Vector3(transform.position.x + 0.46f, transform.position.y, transform.position.z);      //getal is hoeveel van het midden af de kogel wordt afgeschoten
 
+        if (superShooterMode)
+        {
+            playerBullet = bulletPool.ActivateBullet(turretOne, superBulletSpeed);
+            playerBullet = bulletPool.ActivateBullet(turretTwo, superBulletSpeed);
+        }
+        else if (twoTurretModeBasePlayer == false) { playerBullet = bulletPool.ActivateBullet(transform.position, currentPlayerBaseBulletSpeed); }
+        else if (twoTurretModeBasePlayer == true)
+        {
             switch (currentTurret)
             {
                 case 0:
-                    Instantiate(projectile, turretOne, transform.rotation);
+                    //Instantiate(projectile, turretOne, transform.rotation);   OUDE MANIER
+                    playerBullet = bulletPool.ActivateBullet(turretOne, currentPlayerBaseBulletSpeed);
                     currentTurret = 1;
                     break;
                 case 1:
-                    Instantiate(projectile, turretTwo, transform.rotation);
+                    //Instantiate(projectile, turretTwo, transform.rotation);   OUDE MANIER
+                    playerBullet = bulletPool.ActivateBullet(turretTwo, currentPlayerBaseBulletSpeed);
                     currentTurret = 0;
                     break;
                 default:
@@ -104,6 +132,18 @@ public class SC_PlayerShooting : MonoBehaviour
                     break;
             }
         }
+    }
+
+
+    public void SuperShooterModeShooting()
+    {
+        superShooterMode = true;
+        fireRateTimer = 0;      //zorgt dat je gelijk schiet als de powerup activeert zodat je niet eerst op je normale fire rate moet wachten
+    }
+
+    public void EndSuperShooterModeShooting()       //wordt aangeroepen vanuit "SC_Player"
+    {
+        superShooterMode = false;
     }
 
 }

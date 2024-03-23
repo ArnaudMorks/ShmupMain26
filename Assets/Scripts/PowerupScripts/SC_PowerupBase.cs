@@ -18,15 +18,10 @@ public class SC_PowerupBase : MonoBehaviour
         rigidBody.AddForce(transform.forward * powerupPickupSpeed);
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         if (transform.position.z <= _despawnPoint)      //werkt net als bij de "SC_EnemyBase"
             Destroy(gameObject);
-    }
-
-    protected virtual void FixedUpdate()
-    {
-
     }
 
 }
