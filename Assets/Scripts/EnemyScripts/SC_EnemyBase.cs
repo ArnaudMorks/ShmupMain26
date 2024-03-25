@@ -8,7 +8,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 {
     private SC_ScoreManager _scoreManager;
 
-    private Coroutine _damageCoroutine = null;
+    protected Coroutine _damageCoroutine = null;
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint;
     [SerializeField] protected float _enemySpeed;
@@ -38,7 +38,17 @@ public abstract class SC_EnemyBase : MonoBehaviour
         _damageCoroutine ??= StartCoroutine(TakeDamage());
     }
 
-    private IEnumerator TakeDamage()
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (!other.CompareTag("Powerup"))
+        {
+            print(other);
+            _damageCoroutine ??= StartCoroutine(TakeDamage()); 
+        }
+    }
+
+    protected virtual IEnumerator TakeDamage()
     {
         // Actually take damage
         _health--;

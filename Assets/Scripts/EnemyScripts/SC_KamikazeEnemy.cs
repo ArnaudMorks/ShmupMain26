@@ -21,6 +21,9 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     [SerializeField] private float _attackMoveMultiplier;
     [SerializeField] private float _destroyTime;
 
+    private BoxCollider _thisCollider;
+
+
     protected override void Start()
     {
         base.Start();
@@ -28,6 +31,8 @@ public class SC_KamikazeEnemy : SC_EnemyBase
         _kamikazeState = KamikazeState.searching;
 
         _rigidBody.AddForce(transform.forward * _enemySpeed);
+
+        //_thisCollider = GetComponentInChildren<BoxCollider>();
     }
 
     protected override void Update()
@@ -61,16 +66,14 @@ public class SC_KamikazeEnemy : SC_EnemyBase
         Destroy(gameObject, _destroyTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the collider we hit has the player component
-        if (other.TryGetComponent<SC_EmptyDetectionReference>(out _))
-        {
-            // We need the transform of the player to look at it
-            _playerTransform = other.transform;
 
-            // Start the kamikaze coroutine only once
-            _kamikazeCoroutine ??= StartCoroutine(BeginKamikaze());
-        }
+    public void PlayerDetection(Transform playerTransform)
+    {
+        // We need the transform of the player to look at it
+        _playerTransform = playerTransform;
+
+        // Start the kamikaze coroutine only once
+        _kamikazeCoroutine ??= StartCoroutine(BeginKamikaze());
     }
+
 }
