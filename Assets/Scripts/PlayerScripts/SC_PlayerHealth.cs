@@ -10,7 +10,8 @@ public class SC_PlayerHealth : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private int _starterHealth;
     [SerializeField] private float _damageDelay;
-    [SerializeField] private bool _canTakeDamage;
+
+    [SerializeField] private bool _invincibleMode;
 
     private void Awake()
     {
@@ -26,35 +27,37 @@ public class SC_PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_canTakeDamage == false)
+        if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent
         {
-            
-        }
-
             _damageCoroutine ??= StartCoroutine(TakeDamage());
-
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Projectile"))
+        if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent
         {
-            _damageCoroutine ??= StartCoroutine(TakeDamage());
+                if (other.gameObject.CompareTag("Projectile") && other.gameObject.layer != 9)       //layer 9 is de layer van playerprojectiles
+            {
+                _damageCoroutine ??= StartCoroutine(TakeDamage());
+            }
         }
+
     }
 
     private IEnumerator TakeDamage()
     {
+
         // Disable collision so you cant just run into enemies during invincible time
         // _collider.enabled = false;
         Physics.IgnoreLayerCollision(6, 7, true);
-        
 
-       // Remove one point of health and check if the health is 0 (or somehow less than 0)
-       _health--;
+
+        // Remove one point of health and check if the health is 0 (or somehow less than 0)
+        _health--;
         ServiceLocator.Main.HealthUIManager.UpdateHealthUI(_health);
 
-        if(_health <= 0)
+        if (_health <= 0)
         {
             Destroy(gameObject);
         }
@@ -67,5 +70,20 @@ public class SC_PlayerHealth : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 7, false);
 
         _damageCoroutine = null;
+
     }
+
+
+    public void PlayerInvincibleMode()              //wordt vanuit de "SC_Player" aangeroepen
+    {
+        Physics.IgnoreLayerCollision(6, 7, true);
+        _invincibleMode = true;
+    }
+
+    public void EndPlayerInvincibleMode()
+    {
+        Physics.IgnoreLayerCollision(6, 7, false);
+        _invincibleMode = false;
+    }
+
 }
