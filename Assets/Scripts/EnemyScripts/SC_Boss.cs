@@ -10,6 +10,13 @@ public enum DashState
     retreating
 }
 
+public enum LaserState
+{
+    warning,
+    beaming,
+    finished
+}
+
 [RequireComponent(typeof(Rigidbody))]
 public class SC_Boss : MonoBehaviour
 {
@@ -17,10 +24,9 @@ public class SC_Boss : MonoBehaviour
     private Vector3 _restingPosition;
     private Transform _playerTransform;
 
-    // Dash attack
+    [Header("Dashing")]
     private DashState _dashState;
 
-    [Header("Dashing")]
     [SerializeField] private float _aimTime;
     [SerializeField] private float _aimSpeed;
     [SerializeField] private float _minimumDistance;
@@ -34,6 +40,16 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private Transform[] _missileSpawnLocations;
     [SerializeField] private int _burstAmount;
     [SerializeField] private float _burstTime;
+
+
+    [Header("Laser")]
+    private LaserState _laserState;
+
+    [SerializeField] private GameObject _lasers;
+    [SerializeField] private GameObject _lasersWarning;
+    [SerializeField] private float _laserSpeed;
+    [SerializeField] private float _laserWarningTime;
+    [SerializeField] private float _laserTime;
 
     private void Awake()
     {
@@ -50,7 +66,7 @@ public class SC_Boss : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            StartCoroutine(ShootMissiles());
+            StartCoroutine(LaserAttack());
         }
     }
 
@@ -117,6 +133,59 @@ public class SC_Boss : MonoBehaviour
             }
 
             yield return new WaitForSeconds(_burstTime / _burstAmount);
+        }
+    }
+
+    private IEnumerator LaserAttack()
+    {
+        _laserState = LaserState.warning;
+        float laserWarningTime = _laserWarningTime;
+        float laserTime = _laserTime;
+
+        Quaternion startLookDirection = Quaternion.LookRotation(_playerTransform.transform.position - transform.position);
+
+        _lasersWarning.SetActive(true);
+        _lasersWarning.transform.rotation = startLookDirection;
+
+        while (_laserState == LaserState.warning)
+        {
+            // Get the target direction and slowly rotate towards it
+            Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - _lasersWarning.transform.position);
+            _lasersWarning.transform.rotation = Quaternion.Slerp(_lasersWarning.transform.rotation, targetDirection, Time.deltaTime * _laserSpeed);
+
+            // Count down
+            laserWarningTime -= Time.deltaTime;
+
+            if(laserWarningTime <= 0)
+            {
+                _laserState = LaserState.beaming;
+                _lasersWarning.SetActive(false);
+                break;
+            }
+
+            yield return null;
+        }
+
+        _lasers.transform.rotation = _lasersWarning.transform.rotation;
+        _lasers.SetActive(true);
+
+        while (_laserState == LaserState.beaming)
+        {
+            // Get the target direction and slowly rotate towards it
+            Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - _lasers.transform.position);
+            _lasers.transform.rotation = Quaternion.Slerp(_lasers.transform.rotation, targetDirection, Time.deltaTime * _laserSpeed);
+
+            // Count down
+            laserTime -= Time.deltaTime;
+
+            if (laserTime <= 0)
+            {
+                _laserState = LaserState.finished;
+                _lasers.SetActive(false);
+                break;
+            }
+
+            yield return null;
         }
     }
 
