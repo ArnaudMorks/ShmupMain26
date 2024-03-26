@@ -539,6 +539,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b6f703d8e4e71468d08a03740ad3f8, type: 3}
+--- !u!1 &268213158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268213159}
+  - component: {fileID: 268213160}
+  m_Layer: 0
+  m_Name: BossBulletsPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268213159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268213158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.100721, y: -7.18559, z: 4.5235023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &268213160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268213158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fa11841d728d748b99a2cc335e7bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolSize: 600
+  bulletPrefab: {fileID: -1019964523280135838, guid: b972205263bc24a4b9acdc348940aa0d, type: 3}
 --- !u!4 &270884175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 474658835350004990, guid: 78b6f703d8e4e71468d08a03740ad3f8, type: 3}
@@ -1441,15 +1487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1437920127862152809, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6285325909088573485, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6285325909088573485, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
+    - target: {fileID: 5310061660994704154, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
+      propertyPath: _attackInterval
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1465,7 +1507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1473,7 +1515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1485,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8007305699623597062, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1629,7 +1671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303778840362327133, guid: 499d67d993c84c2488b781d2717d205e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7479275208703030524, guid: 499d67d993c84c2488b781d2717d205e, type: 3}
       propertyPath: enemyPool
@@ -4631,3 +4673,4 @@ SceneRoots:
   - {fileID: 8734794987798534967}
   - {fileID: 783969411}
   - {fileID: 1860653530}
+  - {fileID: 268213159}

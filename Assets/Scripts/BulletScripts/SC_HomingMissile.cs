@@ -22,18 +22,26 @@ public class SC_HomingMissile : MonoBehaviour
     private void Start()
     {
         StartCoroutine(LockOnAndLook());
-        Destroy(gameObject, _destroyTime);
+        //Destroy(gameObject, _destroyTime);
     }
 
     private void Update()
     {
-        if(_lockedOn && _target != null && _lockOnTime > 0)
+        _destroyTime -= Time.deltaTime;
+
+        if (_destroyTime <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
+        if (_lockedOn && _target != null && _lockOnTime > 0)
         {
             Quaternion targetDirection = Quaternion.LookRotation(_target.position - transform.position);
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetDirection, Time.deltaTime * _rotationSpeed);
 
             _lockOnTime -= Time.deltaTime;
+
         }
     }
 
@@ -53,7 +61,7 @@ public class SC_HomingMissile : MonoBehaviour
     {
         if(other.TryGetComponent<SC_EmptyDetectionReference>(out _))
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

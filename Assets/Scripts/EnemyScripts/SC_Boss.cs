@@ -33,6 +33,7 @@ public class SC_Boss : MonoBehaviour
     private Rigidbody _rigidbody;
     private Vector3 _restingPosition = new(0f, 0f, 27.4f);
     private Transform _playerTransform;
+    private SC_PoolBossBullets bulletPool = null;
 
     private DashState _dashState;
 
@@ -82,6 +83,7 @@ public class SC_Boss : MonoBehaviour
 
     private void Start()
     {
+        bulletPool = FindObjectOfType<SC_PoolBossBullets>();
         _playerTransform = FindObjectOfType<SC_Player>().transform;
         StartCoroutine(ArriveAtScene());
     }
@@ -215,8 +217,12 @@ public class SC_Boss : MonoBehaviour
         {
             for(int j = 0; j < _missileSpawnLocations.Length; j++)
             {
-                GameObject missile = Instantiate(_missilePrefab, _missileSpawnLocations[j].position, _missileSpawnLocations[j].rotation, null);
-                missile.GetComponent<SC_HomingMissile>().SetTarget(_playerTransform);
+                //GameObject missile = Instantiate(_missilePrefab, _missileSpawnLocations[j].position, _missileSpawnLocations[j].rotation, null);
+                SC_HomingMissile bossBullet;
+                bossBullet = bulletPool.ActivateBossBullet(_missileSpawnLocations[j].position, _missileSpawnLocations[j].rotation);
+
+                bossBullet.SetTarget(_playerTransform);
+                //missile.GetComponent<SC_HomingMissile>().SetTarget(_playerTransform);
             }
 
             yield return new WaitForSeconds(_burstTime / _burstAmount);
