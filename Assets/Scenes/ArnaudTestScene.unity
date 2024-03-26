@@ -1548,7 +1548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1437920127862152809, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5310061660994704154, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: _attackInterval
@@ -1732,7 +1732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303778840362327133, guid: 499d67d993c84c2488b781d2717d205e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7479275208703030524, guid: 499d67d993c84c2488b781d2717d205e, type: 3}
       propertyPath: enemyPool
