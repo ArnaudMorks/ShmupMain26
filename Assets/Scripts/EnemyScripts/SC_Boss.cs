@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public enum DashState
 {
     aiming,
     dashing,
-    retreating
+    retreating,
+    finished
 }
 
 public enum LaserState
@@ -17,16 +19,24 @@ public enum LaserState
     finished
 }
 
+public enum BossState
+{
+    arriving,
+    waitingforattack,
+    attacking,
+    dying
+}
+
 [RequireComponent(typeof(Rigidbody))]
 public class SC_Boss : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private Vector3 _restingPosition;
+    private Vector3 _restingPosition = new(0f, 0f, 27.4f);
     private Transform _playerTransform;
 
-    [Header("Dashing")]
     private DashState _dashState;
 
+    [Header("Dashing")]
     [SerializeField] private float _aimTime;
     [SerializeField] private float _aimSpeed;
     [SerializeField] private float _minimumDistance;
@@ -42,31 +52,105 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private float _burstTime;
 
 
-    [Header("Laser")]
     private LaserState _laserState;
 
+    [Header("Laser")]
     [SerializeField] private GameObject _lasers;
     [SerializeField] private GameObject _lasersWarning;
     [SerializeField] private float _laserSpeed;
     [SerializeField] private float _laserWarningTime;
     [SerializeField] private float _laserTime;
 
+
+    [Header("Basic boss behavior")]
+    [SerializeField] private BossState _state;
+    [SerializeField] private AnimationCurve _arrivalCurve;
+    [SerializeField] private float _arrivalSpeed;
+    [SerializeField] private float _attackInterval; // In seconds
+    [SerializeField] private int _health;
+    [SerializeField] private float _timeUntilDeath;
+    private SC_ObjectShaker _objectShaker;
+    private float _storedAttackInterval;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _restingPosition = transform.position;
+        _objectShaker = GetComponent<SC_ObjectShaker>();
+        _storedAttackInterval = _attackInterval;
+        _state = BossState.arriving;
     }
 
     private void Start()
     {
         _playerTransform = FindObjectOfType<SC_Player>().transform;
+        StartCoroutine(ArriveAtScene());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_state == BossState.arriving) { return; }
+
+        _health--;
+
+        if (_health <= 0 && _state != BossState.dying) 
+        {
+            _state = BossState.dying;
+            _objectShaker.ShakeObject(0.5f, 0.1f);
+            StartCoroutine(Die());
+        }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if(_state == BossState.waitingforattack)
         {
-            StartCoroutine(LaserAttack());
+            _attackInterval -= Time.deltaTime;
+
+            if (_attackInterval > 0) { return; }
+
+            int randomIndex = Random.Range(0, 3);
+            _state = BossState.attacking;
+            _attackInterval = _storedAttackInterval;
+
+            switch(randomIndex)
+            {
+                case 0:
+                    StartCoroutine(ChargeAttack());
+                    break;
+                case 1:
+                    StartCoroutine(ShootMissiles());
+                    break;
+                case 2:
+                    StartCoroutine(LaserAttack());
+                    break;
+            }
+        }
+    }
+
+    private IEnumerator Die()
+    {
+        yield return new WaitForSeconds(_timeUntilDeath);
+
+        Destroy(gameObject);
+    }
+
+    private IEnumerator ArriveAtScene()
+    {
+        while(_state == BossState.arriving)
+        {
+            Vector3 travelDirection = _restingPosition - _rigidbody.position;
+            travelDirection.Normalize();
+
+            float distance = Vector3.Distance(_restingPosition, _rigidbody.position);
+            _rigidbody.MovePosition(_rigidbody.position + (travelDirection * _arrivalCurve.Evaluate(distance) * _arrivalSpeed));
+
+            if(distance <= 0.2)
+            {
+                _rigidbody.position = _restingPosition;
+                _state = BossState.waitingforattack;
+            }
+
+            yield return null;
         }
     }
 
@@ -112,14 +196,17 @@ public class SC_Boss : MonoBehaviour
         {
             MoveTowardsTarget(_restingPosition, _retreatSpeed);
 
-            if(Vector3.Distance(transform.position, _restingPosition) <= 0.2)
+            if(Vector3.Distance(transform.position, _restingPosition) <= 0.5)
             {
+                _dashState = DashState.finished;
                 transform.position = _restingPosition;
                 break;
             }
 
             yield return new WaitForSeconds(Time.deltaTime);
         }
+
+        _state = BossState.waitingforattack;
     }
 
     private IEnumerator ShootMissiles()
@@ -134,6 +221,8 @@ public class SC_Boss : MonoBehaviour
 
             yield return new WaitForSeconds(_burstTime / _burstAmount);
         }
+
+        _state = BossState.waitingforattack;
     }
 
     private IEnumerator LaserAttack()
@@ -141,13 +230,17 @@ public class SC_Boss : MonoBehaviour
         _laserState = LaserState.warning;
         float laserWarningTime = _laserWarningTime;
         float laserTime = _laserTime;
+        Quaternion startLookDirection;
 
-        Quaternion startLookDirection = Quaternion.LookRotation(_playerTransform.transform.position - transform.position);
+        if(_playerTransform != null)
+        {
+            startLookDirection = Quaternion.LookRotation(_playerTransform.transform.position - transform.position);
+            _lasersWarning.transform.rotation = startLookDirection;
+        }
 
         _lasersWarning.SetActive(true);
-        _lasersWarning.transform.rotation = startLookDirection;
 
-        while (_laserState == LaserState.warning)
+        while (_laserState == LaserState.warning && _playerTransform != null)
         {
             // Get the target direction and slowly rotate towards it
             Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - _lasersWarning.transform.position);
@@ -169,7 +262,7 @@ public class SC_Boss : MonoBehaviour
         _lasers.transform.rotation = _lasersWarning.transform.rotation;
         _lasers.SetActive(true);
 
-        while (_laserState == LaserState.beaming)
+        while (_laserState == LaserState.beaming && _playerTransform != null)
         {
             // Get the target direction and slowly rotate towards it
             Quaternion targetDirection = Quaternion.LookRotation(_playerTransform.transform.position - _lasers.transform.position);
@@ -187,6 +280,8 @@ public class SC_Boss : MonoBehaviour
 
             yield return null;
         }
+
+        _state = BossState.waitingforattack;
     }
 
     private void MoveTowardsTarget(Vector3 targetPosition, float speed)

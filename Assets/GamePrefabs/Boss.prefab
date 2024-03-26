@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 572378568659066870}
   - component: {fileID: 5307551232601475457}
   - component: {fileID: 4207095722390742033}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 3589112012068577496}
   - component: {fileID: 4002412003002355861}
   - component: {fileID: 1874545788722049870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 4931529858694513625}
   - component: {fileID: 457754211534032201}
   - component: {fileID: 8275436863742550706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 6097558685103436372}
   - component: {fileID: 4219205920598793316}
   - component: {fileID: 1203559702933161468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 3197938625014841903}
   - component: {fileID: 5206484296964662303}
   - component: {fileID: 3430715664375248350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 633333060817618114}
   - component: {fileID: 6449402577587663893}
   - component: {fileID: 784701502448007633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -604,7 +604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8970182796921657485}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lasers
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -619,7 +619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138982181969131673}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.99998194, z: -0, w: 0.0060115443}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 19.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -637,7 +637,7 @@ Transform:
   - {fileID: 3037746871356600842}
   - {fileID: 6675690110419855662}
   m_Father: {fileID: 8007305699623597062}
-  m_LocalEulerAnglesHint: {x: 0, y: 0.689, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &1142392062735572537
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 7809902795528302720}
   - component: {fileID: 1906889140640960880}
   - component: {fileID: 225474723934643077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ GameObject:
   - component: {fileID: 3958420054777902813}
   - component: {fileID: 8147662967758588266}
   - component: {fileID: 4749992531540147380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,9 +838,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8007305699623597062}
-  - component: {fileID: 4317509210333488512}
+  - component: {fileID: 3761981361745064517}
   - component: {fileID: 6285325909088573485}
   - component: {fileID: 5310061660994704154}
+  - component: {fileID: 6519569963816247694}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -867,8 +868,8 @@ Transform:
   - {fileID: 5753842241258075054}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4317509210333488512
-BoxCollider:
+--- !u!136 &3761981361745064517
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -885,9 +886,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 16.405857, y: 1, z: 41.806168}
-  m_Center: {x: 0, y: 0, z: -0.090872765}
+  serializedVersion: 2
+  m_Radius: 8.513607
+  m_Height: 41.519417
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.18061066}
 --- !u!54 &6285325909088573485
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -933,7 +936,7 @@ MonoBehaviour:
   _timeBeforeAttack: 1
   _dashSpeed: 0.15
   _dashTime: 1
-  _retreatSpeed: 0.1
+  _retreatSpeed: 0.15
   _missilePrefab: {fileID: 4395629006073834111, guid: b972205263bc24a4b9acdc348940aa0d, type: 3}
   _missileSpawnLocations:
   - {fileID: 5394434033423992678}
@@ -945,6 +948,47 @@ MonoBehaviour:
   _laserSpeed: 1
   _laserWarningTime: 3
   _laserTime: 5
+  _state: 0
+  _arrivalCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0033340454
+      value: 0.019378662
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 20.121912
+      value: 9.95458
+      inSlope: 1.4821111
+      outSlope: 1.4821111
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06558722
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _arrivalSpeed: 1
+  _attackInterval: 2
+  _health: 750
+  _timeUntilDeath: 5
+--- !u!114 &6519569963816247694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437920127862152809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bff13cb8fb416af47ac4be974a81a7a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1468879797137459212
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +1000,7 @@ GameObject:
   - component: {fileID: 6502839989134806517}
   - component: {fileID: 4567804239377090057}
   - component: {fileID: 890923709004950655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1084,7 @@ GameObject:
   - component: {fileID: 5967091369882980940}
   - component: {fileID: 7450464352928499322}
   - component: {fileID: 8686037661245588116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1147,7 +1191,7 @@ GameObject:
   - component: {fileID: 2268735782143557749}
   - component: {fileID: 7854643700511299681}
   - component: {fileID: 605515078430486672}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1255,7 +1299,7 @@ GameObject:
   - component: {fileID: 3544058821419287508}
   - component: {fileID: 8486641807616353424}
   - component: {fileID: 5737700480850871795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1406,7 @@ GameObject:
   - component: {fileID: 8390227734303325144}
   - component: {fileID: 3238432044638768319}
   - component: {fileID: 1546465728416532079}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1470,7 +1514,7 @@ GameObject:
   - component: {fileID: 2931398157850874751}
   - component: {fileID: 8309414159667358173}
   - component: {fileID: 8484722098522212456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1574,7 +1618,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5753842241258075054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LasersWarning
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -1589,7 +1633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2273283383192216514}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.99998194, z: -0, w: 0.0060115443}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 19.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1607,7 +1651,7 @@ Transform:
   - {fileID: 1925640247019720998}
   - {fileID: 4931529858694513625}
   m_Father: {fileID: 8007305699623597062}
-  m_LocalEulerAnglesHint: {x: 0, y: 0.689, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1 &2574525654414201661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,7 +1663,7 @@ GameObject:
   - component: {fileID: 200790625188567846}
   - component: {fileID: 8588680324765261408}
   - component: {fileID: 8058146760132194815}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1735,7 +1779,7 @@ GameObject:
   - component: {fileID: 633279132030514687}
   - component: {fileID: 1203135179494699921}
   - component: {fileID: 8674312797166763065}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1819,7 +1863,7 @@ GameObject:
   - component: {fileID: 9149010241116101016}
   - component: {fileID: 1182519628617117271}
   - component: {fileID: 221656169710066943}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1927,7 +1971,7 @@ GameObject:
   - component: {fileID: 5071948128868610563}
   - component: {fileID: 1599628749712850606}
   - component: {fileID: 4103143252725271995}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2035,7 +2079,7 @@ GameObject:
   - component: {fileID: 2620101136900270677}
   - component: {fileID: 1651326412091837850}
   - component: {fileID: 3400064020149807236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2143,7 +2187,7 @@ GameObject:
   - component: {fileID: 4645591117028335673}
   - component: {fileID: 2296617915025415411}
   - component: {fileID: 7114825610840844980}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2249,7 +2293,7 @@ GameObject:
   - component: {fileID: 1925640247019720998}
   - component: {fileID: 2366776870526235367}
   - component: {fileID: 8486220240082445479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,7 +2376,7 @@ GameObject:
   - component: {fileID: 4597841706221743566}
   - component: {fileID: 8256346575955688995}
   - component: {fileID: 5466012373931410723}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2415,7 +2459,7 @@ GameObject:
   - component: {fileID: 210708593427077060}
   - component: {fileID: 5763688113173191406}
   - component: {fileID: 6047309913415567389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2499,7 +2543,7 @@ GameObject:
   - component: {fileID: 4901843821620076096}
   - component: {fileID: 7747782422423420402}
   - component: {fileID: 4585734814417726894}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2689,7 +2733,7 @@ GameObject:
   - component: {fileID: 1679453752934388099}
   - component: {fileID: 3737780257969896881}
   - component: {fileID: 3394595562070155012}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2828,7 +2872,7 @@ GameObject:
   - component: {fileID: 5810887355541773969}
   - component: {fileID: 3258065772309255452}
   - component: {fileID: 2798849212265092122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2966,7 +3010,7 @@ GameObject:
   - component: {fileID: 5723872366024381481}
   - component: {fileID: 2875077944954768042}
   - component: {fileID: 5760219990964163547}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3074,7 +3118,7 @@ GameObject:
   - component: {fileID: 5854714574976876101}
   - component: {fileID: 5831138692239922748}
   - component: {fileID: 2563032585763214575}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3181,7 +3225,7 @@ GameObject:
   - component: {fileID: 8865513967843778713}
   - component: {fileID: 160424225526834575}
   - component: {fileID: 1251313440841496363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3289,7 +3333,7 @@ GameObject:
   - component: {fileID: 2091493104752068835}
   - component: {fileID: 2877962953417704246}
   - component: {fileID: 8454875964622599357}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3396,7 +3440,7 @@ GameObject:
   - component: {fileID: 429112990680990602}
   - component: {fileID: 7095513474635102882}
   - component: {fileID: 8887274868526971412}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3480,7 +3524,7 @@ GameObject:
   - component: {fileID: 1702395020455168267}
   - component: {fileID: 1546354318888271407}
   - component: {fileID: 8499619845057343251}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3586,7 +3630,7 @@ GameObject:
   - component: {fileID: 4277439967822050059}
   - component: {fileID: 2560641009837935500}
   - component: {fileID: 2527675540295822272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3670,7 +3714,7 @@ GameObject:
   - component: {fileID: 6122805235274367988}
   - component: {fileID: 4775760304297635148}
   - component: {fileID: 463266782137505909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3777,7 +3821,7 @@ GameObject:
   - component: {fileID: 3196775649015845961}
   - component: {fileID: 3652186082065550016}
   - component: {fileID: 9144600847067357837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3884,7 +3928,7 @@ GameObject:
   - component: {fileID: 7826757424907954710}
   - component: {fileID: 6285191011892441716}
   - component: {fileID: 6053854176281003584}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

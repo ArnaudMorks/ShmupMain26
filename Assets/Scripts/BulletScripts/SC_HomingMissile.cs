@@ -51,7 +51,10 @@ public class SC_HomingMissile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if(other.TryGetComponent<SC_EmptyDetectionReference>(out _))
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void SetTarget(Transform target) { _target = target; }
