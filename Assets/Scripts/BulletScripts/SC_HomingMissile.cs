@@ -10,19 +10,30 @@ public class SC_HomingMissile : MonoBehaviour
 
     [SerializeField] private float _missileSpeed;
     [SerializeField] private float _rotationSpeed;
+    private float _lockOnTimeBase;
     [SerializeField] private float _lockOnTime;
     [SerializeField] private float _lockOnWaitTime;
+    [SerializeField] private float _destroyTimeBase;
     [SerializeField] private float _destroyTime;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _lockOnTimeBase = _lockOnTime;
     }
 
     private void Start()
     {
-        StartCoroutine(LockOnAndLook());
+        //StartCoroutine(LockOnAndLook());
         //Destroy(gameObject, _destroyTime);
+    }
+
+    private void OnEnable()
+    {
+        _lockedOn = false;
+        StartCoroutine(LockOnAndLook());
+        _destroyTime = _destroyTimeBase;
+        _lockOnTime = _lockOnTimeBase;
     }
 
     private void Update()
@@ -31,6 +42,7 @@ public class SC_HomingMissile : MonoBehaviour
 
         if (_destroyTime <= 0)
         {
+
             gameObject.SetActive(false);
         }
 
