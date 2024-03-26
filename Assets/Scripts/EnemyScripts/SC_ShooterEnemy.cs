@@ -5,17 +5,31 @@ using UnityEngine;
 public class SC_ShooterEnemy : SC_EnemyBase
 {
     [SerializeField] private Transform _bulletSpawnPoint;
-    [SerializeField] private GameObject _bulletPrefab;
+    //[SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private int _burstAmount;
     [SerializeField] private float _burstTime;
     [SerializeField] private float _burstInterval;
 
+    [SerializeField] private SC_PoolEnemyBullets bulletPool = null;
+
+    [SerializeField] private bool startBeforeActivate = false;      //check zodat de "OnEnable" niet eerst uitgevoert wordt
+
+
     protected override void Start()
     {
         base.Start();
+        bulletPool = FindObjectOfType<SC_PoolEnemyBullets>();
+        startBeforeActivate = true;
+    }
 
-        // Start shooting projectiles in bursts
-        StartCoroutine(ShootBullets());
+    private void OnEnable()
+    {
+        if (startBeforeActivate == true)
+        {
+            // Start shooting projectiles in bursts
+            bulletPool = FindObjectOfType<SC_PoolEnemyBullets>();
+            StartCoroutine(ShootBullets());
+        }
     }
 
     private void FixedUpdate()
@@ -33,13 +47,26 @@ public class SC_ShooterEnemy : SC_EnemyBase
             // Instantiate the prefab amount of times we want in a burst and wait the total burst time divided by the burst amount after every shot
             for(int i = 0; i < _burstAmount; i++)
             {
-                Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
+                //Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
+                SC_BulletStandard enemyBullet;
+
+                enemyBullet = bulletPool.ActivateEnemyBullet(transform.position);
 
                 yield return new WaitForSeconds(_burstTime / _burstAmount);
             }
-
+                //hier debuggen ZO
             // Wait the interval delay
             yield return new WaitForSeconds(_burstInterval);
         }
+
     }
+
+    private void Shoot()
+    {
+        SC_BulletStandard enemyBullet;
+
+        enemyBullet = bulletPool.ActivateEnemyBullet(transform.position);
+
+    }
+
 }

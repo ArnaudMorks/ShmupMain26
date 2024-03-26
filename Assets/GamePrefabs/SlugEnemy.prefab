@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8010f8600eca2f4ca32df2f54857175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _despawnPoint: -60
+  _despawnPoint: -20
   _enemySpeed: 250
   _health: 1
   _damageDelay: 0

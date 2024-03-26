@@ -24,7 +24,7 @@ public class SC_MainBulletPlayer : MonoBehaviour
     {
         transform.position += transform.forward * mainPlayerBulletSpeed * Time.deltaTime;
 
-        if (transform.position.z >= 33)     //net uit het scherm despawnen de bullets
+        if (transform.position.z >= 20)     //net uit het scherm despawnen de bullets
         {
             gameObject.SetActive(false);
         }

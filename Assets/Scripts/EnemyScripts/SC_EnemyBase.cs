@@ -10,7 +10,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     protected Coroutine _damageCoroutine = null;
     protected Rigidbody _rigidBody;
-    [SerializeField] protected float _despawnPoint;
+    [SerializeField] protected float _despawnPoint = -20;
     [SerializeField] protected float _enemySpeed;
     [SerializeField] protected int _health;
     [SerializeField] protected float _damageDelay;
@@ -30,7 +30,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     {
        // Destroy the gameObject if it goes past a certain point defined in the inspector window
         if(transform.position.z <= _despawnPoint)
-            Destroy(gameObject);
+            gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,7 +43,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
         if (!other.CompareTag("Powerup"))
         {
-            print(other);
+            //print(other);
             _damageCoroutine ??= StartCoroutine(TakeDamage()); 
         }
     }
@@ -58,7 +58,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
         {
             _scoreManager.ModifyScore(_scoreOnDeath);
 
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         yield return null;

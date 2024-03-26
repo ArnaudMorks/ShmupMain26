@@ -132,6 +132,7 @@ public class SC_PlayerShooting : MonoBehaviour
                     break;
             }
         }
+
     }
 
 

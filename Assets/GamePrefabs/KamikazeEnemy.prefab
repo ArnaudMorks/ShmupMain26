@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d221c689ce29b64eb3d2301b24b9af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _despawnPoint: -60
+  _despawnPoint: -20
   _enemySpeed: 250
   _health: 1
   _damageDelay: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   _playerLookTime: 1.5
   _rotationSpeed: 5
   _attackMoveMultiplier: 2.5
-  _destroyTime: 20
+  _destroyTime: 4
 --- !u!1 &3605549616056792878
 GameObject:
   m_ObjectHideFlags: 0

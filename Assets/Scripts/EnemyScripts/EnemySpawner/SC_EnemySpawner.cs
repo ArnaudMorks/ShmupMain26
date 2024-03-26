@@ -12,14 +12,15 @@ public class SC_EnemySpawner : MonoBehaviour
     [SerializeField] private float leftOrRightSpawnOffset = 4.5f;
     [SerializeField] private GameObject[] enemyTypeArray;
 
+    [SerializeField] private SC_EnemyPool enemyPool = null;
 
-    // Start is called before the first frame update
+
     void Start()
     {
-        SpawnEnemy();
+       // SpawnEnemy();
+        enemyPool = FindObjectOfType<SC_EnemyPool>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (spawnTimer < spawnRate)
@@ -30,6 +31,7 @@ public class SC_EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
             spawnTimer = 0;
+            //maak spawn rate random
         }
 
 /*        if (spawnTimerUp < spawnRateUp)
@@ -46,11 +48,14 @@ public class SC_EnemySpawner : MonoBehaviour
 
     }
 
-    void SpawnEnemy()
+    private void SpawnEnemy()
     {
         float maxLeftPoint = transform.position.x - leftOrRightSpawnOffset;
         float maxRightPoint = transform.position.x + leftOrRightSpawnOffset;
 
-        Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+
+        enemyPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+
+        //Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
     }
 }

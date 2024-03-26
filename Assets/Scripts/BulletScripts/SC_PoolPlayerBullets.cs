@@ -17,7 +17,7 @@ public class SC_PoolPlayerBullets : MonoBehaviour
             //Create new bullet
             SC_MainBulletPlayer newBullet = Instantiate<SC_MainBulletPlayer>(bulletPrefab, poolTransform);
 
-            //Deactivate ite
+            //Deactivate it
             newBullet.gameObject.SetActive(false);
 
             poolBullets[i] = newBullet;

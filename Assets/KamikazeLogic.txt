@@ -1,0 +1,1 @@
+De "Rigidbody" bij de kamikaze enemy is er zodat het niet confilc met andere hitboxes
