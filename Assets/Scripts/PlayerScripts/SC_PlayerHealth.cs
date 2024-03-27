@@ -25,7 +25,7 @@ public class SC_PlayerHealth : MonoBehaviour
         Physics.IgnoreLayerCollision(6, 7, false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent
         {

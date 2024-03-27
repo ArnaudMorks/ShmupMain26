@@ -620,7 +620,7 @@ Transform:
   m_GameObject: {fileID: 1138982181969131673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 19.14}
+  m_LocalPosition: {x: -0.19, y: 0, z: 17.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -978,7 +978,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _arrivalSpeed: 1
-  _attackInterval: 7.5
+  _attackInterval: 2
   _health: 750
   _timeUntilDeath: 5
 --- !u!114 &6519569963816247694
@@ -1638,7 +1638,7 @@ Transform:
   m_GameObject: {fileID: 2273283383192216514}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 19.14}
+  m_LocalPosition: {x: -0.19, y: 0, z: 17.649998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2868,13 +2868,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6635913436771866713}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: -0.6427876, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: -6.98, y: 0, z: -7.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6271815469008617581}
-  m_LocalEulerAnglesHint: {x: 0, y: -45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -80, z: 0}
 --- !u!1 &6972474379837567965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,13 +3006,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7087470939035148236}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.6427876, z: 0, w: 0.7660445}
+  m_LocalPosition: {x: 6.52, y: 0, z: -7.080002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6271815469008617581}
-  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 80, z: 0}
 --- !u!1 &7277035886649294923
 GameObject:
   m_ObjectHideFlags: 0
