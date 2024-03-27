@@ -32,7 +32,7 @@ public class SC_Player : MonoBehaviour
 
         playerShooting = gameObject.GetComponent<SC_PlayerShooting>();
         playerHealth = gameObject.GetComponent<SC_PlayerHealth>();
-        powerUpUI = FindObjectOfType<SC_PowerupUI>();
+        //powerUpUI = FindObjectOfType<SC_PowerupUI>();
     }
 
 
@@ -95,7 +95,7 @@ public class SC_Player : MonoBehaviour
 
     public void SuperShooterModeSpeed()
     {
-        powerUpUI.PowerupModeUI();
+        //powerUpUI.PowerupModeUI();
         playerShooting.SuperShooterModeShooting();
         playerHealth.PlayerInvincibleMode();
         invincibilityBubble.SetActive(true);
@@ -105,7 +105,7 @@ public class SC_Player : MonoBehaviour
 
     private void EndSuperShooterMode()
     {
-        powerUpUI.NormalModeUI();
+        //powerUpUI.NormalModeUI();
         playerShooting.EndSuperShooterModeShooting();
         playerHealth.EndPlayerInvincibleMode();
         invincibilityBubble.SetActive(false);

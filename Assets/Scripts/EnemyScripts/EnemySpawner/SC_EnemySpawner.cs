@@ -15,7 +15,7 @@ public class SC_EnemySpawner : MonoBehaviour
     [SerializeField] private SC_EnemyShooterPool enemyShooterPool = null;
     [SerializeField] private SC_EnemyKamikazePool enemyKamikazePool = null;
     [SerializeField] private SC_EnemySlugPool enemySlugPool = null;
-    [SerializeField] private int enemies;
+    [SerializeField] private int currentEnemy;
 
 
     void Start()
@@ -36,6 +36,7 @@ public class SC_EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
             spawnTimer = 0;
+
             //maak spawn rate random
         }
 
@@ -58,10 +59,27 @@ public class SC_EnemySpawner : MonoBehaviour
         float maxLeftPoint = transform.position.x - leftOrRightSpawnOffset;
         float maxRightPoint = transform.position.x + leftOrRightSpawnOffset;
 
+        currentEnemy = Random.Range(0, 3); 
 
-        enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
-        enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));     //WERKT NOG NIET GOED
-        enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+        switch (currentEnemy)
+        {
+            case 0:
+                enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+                break;
+            case 1:
+                enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+                break;
+            case 2:
+                enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+                break;
+            default:
+                Debug.Log("TURRET WERKT NIET");
+                break;
+        }
+
+/*        enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+        enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));           Voor testen individueel
+        enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));*/
 
         //Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
     }
