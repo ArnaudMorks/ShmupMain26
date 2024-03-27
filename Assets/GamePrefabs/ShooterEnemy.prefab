@@ -129,14 +129,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _despawnPoint: -20
   _enemySpeed: 3
+  _healthBase: 2
   _health: 2
   _damageDelay: 0
   _scoreOnDeath: 100
   _bulletSpawnPoint: {fileID: 4560903678294409186}
-  _bulletPrefab: {fileID: 4395629006073834111, guid: df3428c1d6539e94cae295abf9f3cbc6, type: 3}
   _burstAmount: 3
   _burstTime: 0.2
   _burstInterval: 1.5
+  bulletPool: {fileID: 0}
+  startBeforeActivate: 0
+  startedShooting: 0
 --- !u!1 &5840221661717585298
 GameObject:
   m_ObjectHideFlags: 0

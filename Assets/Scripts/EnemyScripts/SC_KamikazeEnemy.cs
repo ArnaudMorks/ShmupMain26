@@ -14,11 +14,13 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     private KamikazeState _kamikazeState;
     private Transform _playerTransform;
     private Coroutine _kamikazeCoroutine = null;
+    [SerializeField] private Quaternion _rotationBase;
 
     [SerializeField] private float _enemyStopDrag;
     [SerializeField] private float _playerLookTime;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private float _attackMoveMultiplier;
+    [SerializeField] private float _destroyTimeBase;
     [SerializeField] private float _destroyTime;
 
     private BoxCollider _thisCollider;
@@ -27,17 +29,47 @@ public class SC_KamikazeEnemy : SC_EnemyBase
     protected override void Start()
     {
         base.Start();
-
+        _destroyTime = _destroyTimeBase;
         _kamikazeState = KamikazeState.searching;
 
-        _rigidBody.AddForce(transform.forward * _enemySpeed);
+        //_rigidBody.AddForce(transform.forward * _enemySpeed);
+        //_rotationBase = transform.rotation;
 
         //_thisCollider = GetComponentInChildren<BoxCollider>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        _kamikazeState = KamikazeState.searching;
+        _destroyTime = _destroyTimeBase;
+        transform.rotation = _rotationBase;
+        //_rigidBody.velocity = Vector3.zero;    //zorgt dat de "AddForce" niet kan stacken
+        _rigidBody.drag = 0;
+        _rigidBody.AddForce(transform.forward * _enemySpeed);
+    }
+
+    private void OnDisable()
+    {
+        StopCoroutine(BeginKamikaze());
+        _kamikazeCoroutine = null;
+        _rigidBody.velocity = Vector3.zero;
     }
 
     protected override void Update()
     {
         base.Update();
+
+        if (_kamikazeState == KamikazeState.attacking)
+        {
+            _destroyTime -= Time.deltaTime;
+
+            if (_destroyTime <= 0)
+            {
+                gameObject.SetActive(false);        //disabled na een tijdje
+            }
+        }
+
 
         if(_kamikazeState == KamikazeState.lookingAtPlayer && _playerTransform != null)
         {
@@ -63,7 +95,7 @@ public class SC_KamikazeEnemy : SC_EnemyBase
         _rigidBody.AddForce(_attackMoveMultiplier * _enemySpeed * transform.forward);
 
         // Destroy the enemy after a certain amount of time because the enemy has the possibility to never reach the destroy threshold
-        Destroy(gameObject, _destroyTime);
+        //Destroy(gameObject, _destroyTime);    OUDE MANIER
     }
 
 

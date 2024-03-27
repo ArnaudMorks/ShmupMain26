@@ -12,6 +12,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint = -20;
     [SerializeField] protected float _enemySpeed;
+    [SerializeField] protected int _healthBase;
     [SerializeField] protected int _health;
     [SerializeField] protected float _damageDelay;
     [SerializeField] protected int _scoreOnDeath;
@@ -26,6 +27,12 @@ public abstract class SC_EnemyBase : MonoBehaviour
         _scoreManager = ServiceLocator.Main.ScoreManager;
     }
 
+    protected virtual void OnEnable()
+    {
+        _health = _healthBase;
+        //gotHit = false;
+    }
+
     protected virtual void Update()
     {
        // Destroy the gameObject if it goes past a certain point defined in the inspector window
@@ -35,13 +42,16 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        _damageCoroutine ??= StartCoroutine(TakeDamage());
+        if (gameObject.activeInHierarchy == true)
+        {
+            _damageCoroutine ??= StartCoroutine(TakeDamage());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
 
-        if (!other.CompareTag("Powerup"))
+        if (!other.CompareTag("Powerup") && !other.CompareTag("Detection") && gameObject.activeInHierarchy == true)
         {
             //print(other);
             _damageCoroutine ??= StartCoroutine(TakeDamage()); 
@@ -52,6 +62,8 @@ public abstract class SC_EnemyBase : MonoBehaviour
     {
         // Actually take damage
         _health--;
+
+        
 
         // Check if the enemy is dead
         if (_health <= 0)

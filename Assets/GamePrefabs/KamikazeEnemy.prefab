@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902891095027658363}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -2.0751832, y: 0, z: 6.813216}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 2908268716921213432}
   - {fileID: 2672822469006672636}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &3308944395936225237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -100,13 +100,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _despawnPoint: -20
   _enemySpeed: 250
+  _healthBase: 1
   _health: 1
   _damageDelay: 0
   _scoreOnDeath: 25
+  _rotationBase: {x: 0, y: 1, z: 0, w: 0}
   _enemyStopDrag: 2.5
   _playerLookTime: 1.5
   _rotationSpeed: 5
   _attackMoveMultiplier: 2.5
+  _destroyTimeBase: 4
   _destroyTime: 4
 --- !u!1 &3605549616056792878
 GameObject:

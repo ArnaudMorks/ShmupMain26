@@ -12,7 +12,8 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
     [SerializeField] private SC_PoolEnemyBullets bulletPool = null;
 
-    [SerializeField] private bool startBeforeActivate = false;      //check zodat de "OnEnable" niet eerst uitgevoert wordt
+    [SerializeField] private bool startBeforeActivate = false;      //check zodat de "OnEnable" niet eerst uitgevoert wordt via een één malige "FixedUpdate"
+    [SerializeField] private bool startedShooting = false;
 
 
     protected override void Start()
@@ -22,9 +23,11 @@ public class SC_ShooterEnemy : SC_EnemyBase
         startBeforeActivate = true;
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        if (startBeforeActivate == true)
+        base.OnEnable();
+
+        if (startedShooting && startedShooting)
         {
             // Start shooting projectiles in bursts
             bulletPool = FindObjectOfType<SC_PoolEnemyBullets>();
@@ -36,6 +39,12 @@ public class SC_ShooterEnemy : SC_EnemyBase
     {
         // Move forward
         _rigidBody.MovePosition(transform.position + -_enemySpeed * Time.deltaTime * Vector3.forward);
+
+        if (startBeforeActivate && transform.position.z <= 16 && startedShooting == false)
+        {
+            StartCoroutine(ShootBullets());
+            startedShooting = true;
+        }
     }
 
     private IEnumerator ShootBullets()
@@ -61,12 +70,12 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
     }
 
-    private void Shoot()
+/*    private void Shoot()
     {
         SC_BulletStandard enemyBullet;
 
         enemyBullet = bulletPool.ActivateEnemyBullet(transform.position);
 
-    }
+    }*/
 
 }

@@ -12,13 +12,17 @@ public class SC_EnemySpawner : MonoBehaviour
     [SerializeField] private float leftOrRightSpawnOffset = 4.5f;
     [SerializeField] private GameObject[] enemyTypeArray;
 
-    [SerializeField] private SC_EnemyPool enemyPool = null;
+    [SerializeField] private SC_EnemyShooterPool enemyShooterPool = null;
+    [SerializeField] private SC_EnemyKamikazePool enemyKamikazePool = null;
+    [SerializeField] private SC_EnemySlugPool enemySlugPool = null;
 
 
     void Start()
     {
        // SpawnEnemy();
-        enemyPool = FindObjectOfType<SC_EnemyPool>();
+        enemyShooterPool = FindObjectOfType<SC_EnemyShooterPool>();
+        enemyKamikazePool = FindObjectOfType<SC_EnemyKamikazePool>();
+        enemySlugPool = FindObjectOfType<SC_EnemySlugPool>();
     }
 
     void Update()
@@ -53,8 +57,9 @@ public class SC_EnemySpawner : MonoBehaviour
         float maxLeftPoint = transform.position.x - leftOrRightSpawnOffset;
         float maxRightPoint = transform.position.x + leftOrRightSpawnOffset;
 
-
-        enemyPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+        enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+        enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));     //WERKT NOG NIET GOED
+        enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
 
         //Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
     }

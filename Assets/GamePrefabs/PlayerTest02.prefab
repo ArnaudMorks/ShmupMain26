@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 3376043242424102124}
   - component: {fileID: 1878866121875829879}
   - component: {fileID: 9886048284045098}
+  - component: {fileID: 6272591130486844363}
   m_Layer: 0
   m_Name: DetectionHitbox
   m_TagString: Detection
@@ -210,6 +211,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 857afc56c1ba7914b8deea12d254cd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &6272591130486844363
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799839852957345475}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 78
+  m_CollisionDetection: 0
 --- !u!1 &6429966201035651177
 GameObject:
   m_ObjectHideFlags: 0

@@ -978,7 +978,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _arrivalSpeed: 1
-  _attackInterval: 2
+  _attackInterval: 7.5
   _health: 750
   _timeUntilDeath: 5
 --- !u!114 &6519569963816247694
