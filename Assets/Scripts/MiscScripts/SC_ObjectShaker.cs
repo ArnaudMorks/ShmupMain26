@@ -9,6 +9,7 @@ public class SC_ObjectShaker : MonoBehaviour
     private bool _isShaking;
     private Vector3 _position;
     private float _shakeSpeed;
+    private float _shakeInterval;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class SC_ObjectShaker : MonoBehaviour
             Vector3 displacement = new(randomPosition.x, 0f, randomPosition.y);
 
             _rigidbody.position = _position + displacement;
+            _shakeSpeed = _shakeInterval;
         }
     }
 
@@ -35,7 +37,7 @@ public class SC_ObjectShaker : MonoBehaviour
     {
         _position = transform.position;
         _shakeIntensity = intensity;
-        _shakeSpeed = shakeSpeed;
+        _shakeInterval = shakeSpeed;
         _isShaking = true;
     }
 }

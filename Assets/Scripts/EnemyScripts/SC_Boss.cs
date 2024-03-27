@@ -70,6 +70,8 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private float _attackInterval; // In seconds
     [SerializeField] private int _health;
     [SerializeField] private float _timeUntilDeath;
+    [SerializeField] private float _enragedAttackInterval;
+    private float _totalHealth;
     private SC_ObjectShaker _objectShaker;
     private float _storedAttackInterval;
 
@@ -79,6 +81,7 @@ public class SC_Boss : MonoBehaviour
         _objectShaker = GetComponent<SC_ObjectShaker>();
         _storedAttackInterval = _attackInterval;
         _state = BossState.arriving;
+        _totalHealth = _health;
     }
 
     private void Start()
@@ -93,11 +96,16 @@ public class SC_Boss : MonoBehaviour
         if (_state == BossState.arriving) { return; }
 
         _health--;
+        if (_health <= _totalHealth * 0.333 && _storedAttackInterval != _enragedAttackInterval)
+        {
+            _objectShaker.ShakeObject(0.2f, 0.05f);
+            _storedAttackInterval = _enragedAttackInterval;
+        }
 
         if (_health <= 0 && _state != BossState.dying) 
         {
             _state = BossState.dying;
-            _objectShaker.ShakeObject(0.5f, 0.1f);
+            _objectShaker.ShakeObject(0.5f, 0.001f);
             StartCoroutine(Die());
         }
     }
@@ -110,7 +118,7 @@ public class SC_Boss : MonoBehaviour
 
             if (_attackInterval > 0) { return; }
 
-            int randomIndex = Random.Range(0, 3);
+            int randomIndex = Random.Range(1, 2);
             _state = BossState.attacking;
             _attackInterval = _storedAttackInterval;
 

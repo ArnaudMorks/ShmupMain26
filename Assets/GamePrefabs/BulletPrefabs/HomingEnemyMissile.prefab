@@ -155,8 +155,8 @@ MonoBehaviour:
   _rotationSpeed: 7.5
   _lockOnTime: 0.7
   _lockOnWaitTime: 0.1
-  _destroyTimeBase: 8
-  _destroyTime: 8
+  _destroyTimeBase: 5
+  _destroyTime: 5
 --- !u!54 &1769913926926542121
 Rigidbody:
   m_ObjectHideFlags: 0
