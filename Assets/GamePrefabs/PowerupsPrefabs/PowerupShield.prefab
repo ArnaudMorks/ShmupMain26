@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4489327534426449392}
   - component: {fileID: 7714074373427048270}
   - component: {fileID: -8850630308895281646}
-  - component: {fileID: 6591429112680918274}
+  - component: {fileID: 7767401195962065055}
   m_Layer: 0
   m_Name: PowerupShield
   m_TagString: Powerup
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6591429112680918274
+--- !u!114 &7767401195962065055
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8430007875773379049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea30e4a0e72ecb4e885df626b36d6bf, type: 3}
+  m_Script: {fileID: 11500000, guid: e0740b1f804bca64cb5d5a6ed2bd3cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _despawnPoint: -21

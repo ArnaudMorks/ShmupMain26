@@ -13,11 +13,9 @@ public class SC_PowerupShield : SC_PowerupBase
 
     private void OnTriggerEnter(Collider other)
     {
-        SC_PlayerHealth playerHealth = other.gameObject.GetComponent<SC_PlayerHealth>();
-
-        if (playerHealth != null)
+        if(other.TryGetComponent<SC_PlayerHealth>(out var playerHealth))
         {
-            playerMovement.SuperShooterModeSpeed();
+            playerHealth.SetShield();
             Destroy(gameObject);
         }
     }

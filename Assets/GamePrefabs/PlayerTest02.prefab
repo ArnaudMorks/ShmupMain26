@@ -142,6 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 3
   _starterHealth: 3
+  _shield: 0
+  _maxShield: 3
   _damageDelay: 0.4
   _invincibleMode: 0
 --- !u!1 &5799839852957345475

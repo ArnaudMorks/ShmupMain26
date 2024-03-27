@@ -6,9 +6,14 @@ public class SC_PlayerHealth : MonoBehaviour
 {
     private Coroutine _damageCoroutine;
     private BoxCollider _collider;      //player collider
+    
 
     [SerializeField] private int _health;
     [SerializeField] private int _starterHealth;
+
+    [SerializeField] private int _shield;
+    [SerializeField] private int _maxShield;
+
     [SerializeField] private float _damageDelay;
 
     [SerializeField] private bool _invincibleMode;
@@ -23,6 +28,9 @@ public class SC_PlayerHealth : MonoBehaviour
         // Set the health to the starter health
         _health = _starterHealth;
         Physics.IgnoreLayerCollision(6, 7, false);
+
+        ServiceLocator.Main.HealthUIManager.UpdateHealthUI(_health);
+        ServiceLocator.Main.ShieldUIManager.UpdateShieldUI(_shield);
     }
 
     private void OnCollisionStay(Collision collision)
@@ -54,8 +62,17 @@ public class SC_PlayerHealth : MonoBehaviour
 
 
         // Remove one point of health and check if the health is 0 (or somehow less than 0)
-        _health--;
-        ServiceLocator.Main.HealthUIManager.UpdateHealthUI(_health);
+        if(_shield > 0)
+        {
+            _shield--;
+            ServiceLocator.Main.ShieldUIManager.UpdateShieldUI(_shield);
+        }
+        else
+        {
+            _health--;
+            ServiceLocator.Main.HealthUIManager.UpdateHealthUI(_health);
+        }
+        
 
         if (_health <= 0)
         {
@@ -71,6 +88,12 @@ public class SC_PlayerHealth : MonoBehaviour
 
         _damageCoroutine = null;
 
+    }
+
+    public void SetShield()
+    {
+        _shield = _maxShield;
+        ServiceLocator.Main.ShieldUIManager.UpdateShieldUI(_shield);
     }
 
 
