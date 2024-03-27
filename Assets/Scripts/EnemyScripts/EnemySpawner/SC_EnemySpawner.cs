@@ -15,6 +15,7 @@ public class SC_EnemySpawner : MonoBehaviour
     [SerializeField] private SC_EnemyShooterPool enemyShooterPool = null;
     [SerializeField] private SC_EnemyKamikazePool enemyKamikazePool = null;
     [SerializeField] private SC_EnemySlugPool enemySlugPool = null;
+    [SerializeField] private int enemies;
 
 
     void Start()
@@ -56,6 +57,7 @@ public class SC_EnemySpawner : MonoBehaviour
     {
         float maxLeftPoint = transform.position.x - leftOrRightSpawnOffset;
         float maxRightPoint = transform.position.x + leftOrRightSpawnOffset;
+
 
         enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
         enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));     //WERKT NOG NIET GOED
