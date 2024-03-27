@@ -71,6 +71,7 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private int _health;
     [SerializeField] private float _timeUntilDeath;
     [SerializeField] private float _enragedAttackInterval;
+    [SerializeField] private GameObject _deathParticle;
     private float _totalHealth;
     private SC_ObjectShaker _objectShaker;
     private float _storedAttackInterval;
@@ -141,6 +142,7 @@ public class SC_Boss : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeUntilDeath);
 
+        Instantiate(_deathParticle, transform.position - new Vector3(0, 0, 17), Quaternion.Euler(-90, 0, 0), null);
         Destroy(gameObject);
     }
 

@@ -981,6 +981,8 @@ MonoBehaviour:
   _attackInterval: 7.5
   _health: 750
   _timeUntilDeath: 5
+  _enragedAttackInterval: 0
+  _deathParticle: {fileID: 4203250389700919056, guid: ad0922114d983c842ae577b93831db71, type: 3}
 --- !u!114 &6519569963816247694
 MonoBehaviour:
   m_ObjectHideFlags: 0
