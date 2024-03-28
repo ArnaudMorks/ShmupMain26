@@ -84,6 +84,9 @@ MonoBehaviour:
   baseMoveSpeed: 16
   moveSpeed: 0
   invincibilityBubble: {fileID: 6429966201035651177}
+  lightMapWidth: 17
+  mediumMapWidth: 22
+  currentMapWidth: 0
 --- !u!114 &5440232786251321995
 MonoBehaviour:
   m_ObjectHideFlags: 0

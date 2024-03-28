@@ -13,6 +13,7 @@ public class SC_SlugEnemy : SC_EnemyBase
 
     protected override void OnEnable()
     {
+        base.OnEnable();
         _rigidBody.velocity = Vector3.zero;    //zorgt dat de "AddForce" niet kan stacken
         _rigidBody.AddForce(transform.forward * _enemySpeed);
     }

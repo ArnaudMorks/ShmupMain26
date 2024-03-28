@@ -15,6 +15,8 @@ public class SC_ShooterEnemy : SC_EnemyBase
     [SerializeField] private bool startBeforeActivate = false;      //check zodat de "OnEnable" niet eerst uitgevoert wordt via een één malige "FixedUpdate"
     [SerializeField] private bool startedShooting = false;
 
+    [SerializeField] private float projectileSpawnLocationZDistance;     //wordt van de huidige Z positie afgetrokken
+
 
     protected override void Start()
     {
@@ -59,7 +61,9 @@ public class SC_ShooterEnemy : SC_EnemyBase
                 //Instantiate(_bulletPrefab, _bulletSpawnPoint.position, _bulletSpawnPoint.rotation);
                 SC_BulletStandard enemyBullet;
 
-                enemyBullet = bulletPool.ActivateEnemyBullet(transform.position);
+                Vector3 bulletSpawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - projectileSpawnLocationZDistance);   //zorgt dat de bullet iets verder naar voren spawned
+
+                enemyBullet = bulletPool.ActivateEnemyBullet(bulletSpawnPosition);
 
                 yield return new WaitForSeconds(_burstTime / _burstAmount);
             }

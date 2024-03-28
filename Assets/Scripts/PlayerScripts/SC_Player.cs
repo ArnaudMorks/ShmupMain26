@@ -24,6 +24,12 @@ public class SC_Player : MonoBehaviour
     private SC_PowerupUI powerUpUI;     //MISSCHIEN LATER ANDERS
     [SerializeField] private GameObject invincibilityBubble;
 
+    [Header("MaxMapWidth")]
+    [SerializeField] private float lightMapWidth = 17;
+    [SerializeField] private float mediumMapWidth = 22;      //basis
+
+    [SerializeField] private float currentMapWidth;
+
 
     void Start()
     {
@@ -33,6 +39,8 @@ public class SC_Player : MonoBehaviour
         playerShooting = gameObject.GetComponent<SC_PlayerShooting>();
         playerHealth = gameObject.GetComponent<SC_PlayerHealth>();
         //powerUpUI = FindObjectOfType<SC_PowerupUI>();
+
+        currentMapWidth = lightMapWidth;        //misschien later veranderen wegens save en load (respawn)
     }
 
 
@@ -49,12 +57,12 @@ public class SC_Player : MonoBehaviour
 
 
         //MovmentBounds
-        if (transform.position.x >= 22)      //max width x position
+        if (transform.position.x >= currentMapWidth)      //max width x position
         {
             if (movement.x > 0) { movement.x = 0; }
         }
 
-        if (transform.position.x <= -22)      //min width x position
+        if (transform.position.x <= -currentMapWidth)      //min width x position
         {
             if (movement.x < 0) { movement.x = 0; }
         }

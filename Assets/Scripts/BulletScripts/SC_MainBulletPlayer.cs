@@ -41,11 +41,12 @@ public class SC_MainBulletPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         SC_EnemyBase enemyBase = other.gameObject.GetComponent<SC_EnemyBase>();
+        SC_EmptyEnemyCollisionRef enemyCollisionRef = other.gameObject.GetComponent<SC_EmptyEnemyCollisionRef>();
         SC_Boss boss = other.gameObject.GetComponent<SC_Boss>();
         //hier later terrain reference
         
 
-        if (other.isTrigger == false && (enemyBase != null || boss != null))
+        if (other.isTrigger == false && (enemyBase != null || enemyCollisionRef || boss != null))
         { 
             gameObject.SetActive(false);
         }

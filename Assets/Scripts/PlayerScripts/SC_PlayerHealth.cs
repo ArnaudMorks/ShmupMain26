@@ -33,6 +33,14 @@ public class SC_PlayerHealth : MonoBehaviour
         ServiceLocator.Main.ShieldUIManager.UpdateShieldUI(_shield);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent
+        {
+            _damageCoroutine ??= StartCoroutine(TakeDamage());
+        }
+    }
+
     private void OnCollisionStay(Collision collision)
     {
         if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent

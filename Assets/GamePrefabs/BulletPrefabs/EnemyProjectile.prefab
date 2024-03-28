@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _despawnPoint: -20
-  projectileSpeed: 60
+  projectileSpeed: 30
 --- !u!1001 &7123215080681993103
 PrefabInstance:
   m_ObjectHideFlags: 0
