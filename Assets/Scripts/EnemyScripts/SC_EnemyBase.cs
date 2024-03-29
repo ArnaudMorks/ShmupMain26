@@ -11,11 +11,16 @@ public abstract class SC_EnemyBase : MonoBehaviour
     protected Coroutine _damageCoroutine = null;
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint = -20;
+    [SerializeField] protected float _enemySpeedBase;
+    [SerializeField] protected float _enemySpeedOffset;
     [SerializeField] protected float _enemySpeed;
     [SerializeField] protected int _healthBase;
     [SerializeField] protected int _health;
     [SerializeField] protected float _damageDelay;
     [SerializeField] protected int _scoreOnDeath;
+
+    [SerializeField] protected GameObject powerupDrop = null;
+
 
     protected virtual void Awake()
     {
@@ -24,6 +29,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        powerupDrop = null;
         _scoreManager = ServiceLocator.Main.ScoreManager;
     }
 
@@ -51,7 +57,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
 
-        if (!other.CompareTag("Powerup") && !other.CompareTag("Detection") && gameObject.activeInHierarchy == true)
+        if (!other.CompareTag("Powerup") && !other.CompareTag("Detection") && !other.CompareTag("Bush") && gameObject.activeInHierarchy == true)
         {
             //print(other);
             _damageCoroutine ??= StartCoroutine(TakeDamage()); 
@@ -70,6 +76,8 @@ public abstract class SC_EnemyBase : MonoBehaviour
         {
             _scoreManager.ModifyScore(_scoreOnDeath);
 
+            if (powerupDrop != null) { Instantiate(powerupDrop, transform.position, transform.rotation); }
+
             gameObject.SetActive(false);
         }
 
@@ -77,4 +85,11 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
         _damageCoroutine = null;
     }
+
+
+    public void PowerupOnDeath(GameObject powerup)
+    {
+        powerupDrop = powerup;
+    }
+
 }

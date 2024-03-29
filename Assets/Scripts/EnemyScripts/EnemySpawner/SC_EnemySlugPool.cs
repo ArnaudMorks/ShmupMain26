@@ -14,23 +14,25 @@ public class SC_EnemySlugPool : MonoBehaviour
     }
 
 
-    public SC_SlugEnemy ActivateSlugEnemy(Vector3 position)
+    public SC_SlugEnemy ActivateSlugEnemy(Vector3 position, GameObject normalPowerUp)
     {
-        SC_SlugEnemy availableShooterEnemies = null;
+        SC_SlugEnemy availableSlugEnemy = null;
 
         for (int i = 0; i < poolEnemies.Length; i++)
         {
             if (poolEnemies[i].isActiveAndEnabled == false)
             {
-                availableShooterEnemies = poolEnemies[i];
+                availableSlugEnemy = poolEnemies[i];
                 break;
             }
         }
 
-        availableShooterEnemies.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
+        availableSlugEnemy.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
 
-        availableShooterEnemies.gameObject.SetActive(true);
-        return availableShooterEnemies;
+        availableSlugEnemy.PowerupOnDeath(normalPowerUp);
+
+        availableSlugEnemy.gameObject.SetActive(true);
+        return availableSlugEnemy;
     }
 
 

@@ -44,10 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd03ad50341d304480047c855a01141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 2
+  randomSpawnerOn: 0
+  beginSlugSpawnRate: 1.4
+  highSpawnRate: 0.5
+  currentSpawnRate: 0
   spawnTimer: 0
-  leftOrRightSpawnOffset: 21
-  enemyTypeArray:
-  - {fileID: 4713458690884242320, guid: fcee05d2aca31fa4196b15b2929972a1, type: 3}
-  - {fileID: 7829226728970144800, guid: ee3934b4cfa67b2458f28ee5efb4752a, type: 3}
-  - {fileID: 902891095027658363, guid: 7760216958abaf041ba2c416d27f3619, type: 3}
+  firstLevelLeftOrRightSpawnOffset: 16.8
+  secondLevelLeftOrRightSpawnOffset: 21
+  currentLeftOrRightSpawnOffset: 0
+  enemyShooterPool: {fileID: 0}
+  enemyKamikazePool: {fileID: 0}
+  enemySlugPool: {fileID: 0}
+  currentEnemy: 0
+  enemySpecificRandomizer: 0
+  spawnerLevel: 0

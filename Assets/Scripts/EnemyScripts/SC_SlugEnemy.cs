@@ -15,6 +15,12 @@ public class SC_SlugEnemy : SC_EnemyBase
     {
         base.OnEnable();
         _rigidBody.velocity = Vector3.zero;    //zorgt dat de "AddForce" niet kan stacken
+
+        float minOffset = _enemySpeedBase - _enemySpeedOffset;
+        float maxOffset = _enemySpeedBase + _enemySpeedOffset;
+
+        _enemySpeed = Random.Range(minOffset, maxOffset);
+
         _rigidBody.AddForce(transform.forward * _enemySpeed);
     }
 }

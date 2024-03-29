@@ -8,6 +8,7 @@ TagManager:
   - Detection
   - Enemy
   - Powerup
+  - Bush
   layers:
   - Default
   - TransparentFX

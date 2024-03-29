@@ -15,9 +15,12 @@ public class SC_Player : MonoBehaviour
 
     [SerializeField] private float superModeMoveSpeed;
 
-    [SerializeField] private float baseMoveSpeed = 5f;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] private float baseMoveSpeed = 14;
+    [SerializeField] private float setMoveSpeed;
+    [SerializeField] private float slowZoneMoveSpeed;   //als je over bepaalde planten gaat ga je langzamer
+    [SerializeField] private float currentMoveSpeed;
     private Vector3 movement;
+    [SerializeField] private float knockBackForce;
 
     private SC_PlayerShooting playerShooting;
     private SC_PlayerHealth playerHealth;
@@ -34,7 +37,8 @@ public class SC_Player : MonoBehaviour
     void Start()
     {
         myRigidbody = gameObject.GetComponent<Rigidbody>();
-        moveSpeed = baseMoveSpeed;      //de logica; "moveSpeed" kan veranderen en de "baseMovespeed" is de standaard snelheid waar de player weer terug naar kan veranderen
+        setMoveSpeed = baseMoveSpeed;      //de logica; "setMoveSpeed" kan veranderen en de "baseMovespeed" is de standaard snelheid waar de player weer terug naar kan veranderen
+        currentMoveSpeed = setMoveSpeed;
 
         playerShooting = gameObject.GetComponent<SC_PlayerShooting>();
         playerHealth = gameObject.GetComponent<SC_PlayerHealth>();
@@ -82,7 +86,7 @@ public class SC_Player : MonoBehaviour
     void FixedUpdate()
     {
         //myRigidbody.MovePosition(myRigidbody.position + movement * moveSpeed * Time.fixedDeltaTime);
-        myRigidbody.AddForce(movement * moveSpeed);
+        myRigidbody.AddForce(movement * currentMoveSpeed);
 
         Vector3 flatVelocity = new Vector3(myRigidbody.velocity.x, 0, myRigidbody.velocity.z);
 
@@ -92,11 +96,35 @@ public class SC_Player : MonoBehaviour
                 }*/
 
         //limit velocity if needed
-        if (flatVelocity.magnitude > moveSpeed)
+        if (flatVelocity.magnitude > currentMoveSpeed)
         {
-            Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+            Vector3 limitedVelocity = flatVelocity.normalized * currentMoveSpeed;
             myRigidbody.velocity = new Vector3(limitedVelocity.x, myRigidbody.velocity.y, limitedVelocity.z);
             //print(limitedVelocity.magnitude);
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        myRigidbody.position += collision.contacts[0].normal * knockBackForce; //pakt eerste contact met de "[0]"; dus registreerd eerste botsting in het geval je meerdere contact punten hebt
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SC_EmptyBushHitRef bush = other.gameObject.GetComponent<SC_EmptyBushHitRef>();
+        if (bush != null)
+        {
+            currentMoveSpeed = slowZoneMoveSpeed;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        SC_EmptyBushHitRef bush = other.gameObject.GetComponent<SC_EmptyBushHitRef>();
+        if (bush != null)
+        {
+            currentMoveSpeed = setMoveSpeed;
         }
     }
 
@@ -107,7 +135,7 @@ public class SC_Player : MonoBehaviour
         playerShooting.SuperShooterModeShooting();
         playerHealth.PlayerInvincibleMode();
         invincibilityBubble.SetActive(true);
-        moveSpeed = superModeMoveSpeed;
+        currentMoveSpeed = superModeMoveSpeed;
         Invoke("EndSuperShooterMode", superModeTime);       //moet net zo lang zijn als bij de "SC_PlayerShooting" SuperShooterMode
     }
 
@@ -117,7 +145,7 @@ public class SC_Player : MonoBehaviour
         playerShooting.EndSuperShooterModeShooting();
         playerHealth.EndPlayerInvincibleMode();
         invincibilityBubble.SetActive(false);
-        moveSpeed = baseMoveSpeed;
+        currentMoveSpeed = baseMoveSpeed;
     }
 
 }

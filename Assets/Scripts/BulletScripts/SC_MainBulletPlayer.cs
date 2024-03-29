@@ -10,14 +10,14 @@ public class SC_MainBulletPlayer : MonoBehaviour
     //private SC_PlayerShooting projectilePlayerManager;
     [SerializeField] private float mainPlayerBulletSpeed;
 
-    void Start()
+/*    void Start()
     {
         //projectilePlayerManager = FindObjectOfType<SC_PlayerShooting>();
 
         //mainPlayerBulletSpeed = projectilePlayerManager.CurrentPlayerBaseBulletSpeed;
 
         //Destroy(gameObject, despawnTimer);    OUDE MANIER
-    }
+    }*/
 
 
     private void FixedUpdate()

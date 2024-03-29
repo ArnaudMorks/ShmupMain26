@@ -64,7 +64,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1223686376581935105
 MonoBehaviour:
@@ -81,8 +81,11 @@ MonoBehaviour:
   myRigidbody: {fileID: 0}
   superModeTime: 6
   superModeMoveSpeed: 20
-  baseMoveSpeed: 16
-  moveSpeed: 0
+  baseMoveSpeed: 14
+  setMoveSpeed: 0
+  slowZoneMoveSpeed: 4
+  currentMoveSpeed: 0
+  knockBackForce: 2
   invincibilityBubble: {fileID: 6429966201035651177}
   lightMapWidth: 17
   mediumMapWidth: 22
