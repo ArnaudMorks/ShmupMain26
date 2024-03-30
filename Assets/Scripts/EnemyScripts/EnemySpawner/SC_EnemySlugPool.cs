@@ -7,6 +7,7 @@ public class SC_EnemySlugPool : MonoBehaviour
     [SerializeField] private SC_SlugEnemy shooterPrefab = null;
     private SC_SlugEnemy[] poolEnemies = null;
 
+    [SerializeField] private float normalSlugSpeed = 300;     //moet zelfde zijn als in de GamePrefab
 
     private void Awake()
     {
@@ -14,7 +15,7 @@ public class SC_EnemySlugPool : MonoBehaviour
     }
 
 
-    public SC_SlugEnemy ActivateSlugEnemy(Vector3 position, GameObject normalPowerUp)
+    public SC_SlugEnemy ActivateSlugEnemy(Vector3 position, Quaternion rotation, bool singleSetSpeed, GameObject normalPowerUp, float customSpeed, float froggerMode)      //als "customSpeed" 0 is dan heeft die de orginele snelheid
     {
         SC_SlugEnemy availableSlugEnemy = null;
 
@@ -29,7 +30,16 @@ public class SC_EnemySlugPool : MonoBehaviour
 
         availableSlugEnemy.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
 
+        availableSlugEnemy.transform.localRotation = rotation;
+
+        availableSlugEnemy.SingleSetSpeed = singleSetSpeed;
+
         availableSlugEnemy.PowerupOnDeath(normalPowerUp);
+
+        if (customSpeed != 0) { availableSlugEnemy.EnemySpeedBase = customSpeed;}
+        else { availableSlugEnemy.EnemySpeedBase = normalSlugSpeed; }
+
+        availableSlugEnemy.SlugFroggerMode = froggerMode;
 
         availableSlugEnemy.gameObject.SetActive(true);
         return availableSlugEnemy;

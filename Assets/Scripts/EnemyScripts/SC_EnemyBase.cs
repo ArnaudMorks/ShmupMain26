@@ -12,12 +12,29 @@ public abstract class SC_EnemyBase : MonoBehaviour
     protected Rigidbody _rigidBody;
     [SerializeField] protected float _despawnPoint = -20;
     [SerializeField] protected float _enemySpeedBase;
+    public float EnemySpeedBase
+    {
+        get { return _enemySpeedBase; }
+        set { _enemySpeedBase = value; }
+    }
+
     [SerializeField] protected float _enemySpeedOffset;
     [SerializeField] protected float _enemySpeed;
     [SerializeField] protected int _healthBase;
     [SerializeField] protected int _health;
+    public int HealthEnemy
+    {
+        get { return _health; }
+    }
     [SerializeField] protected float _damageDelay;
     [SerializeField] protected int _scoreOnDeath;
+
+    [SerializeField] protected bool _singleSetSpeed;
+    public bool SingleSetSpeed
+    {
+        get { return _singleSetSpeed; }
+        set { _singleSetSpeed = value; }
+    }
 
     [SerializeField] protected GameObject powerupDrop = null;
 
@@ -29,7 +46,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        powerupDrop = null;
+        //powerupDrop = null;
         _scoreManager = ServiceLocator.Main.ScoreManager;
     }
 

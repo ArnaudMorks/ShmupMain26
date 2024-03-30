@@ -25,6 +25,8 @@ public class SC_SpawnManager : MonoBehaviour
     {
         //currentPowerup = fireRatePowerup;
     }*/
+    public void SpawnModeOn() { enemySpawner.RandomSpawnerOn = true; }
+    public void SpawnModeOff() { enemySpawner.RandomSpawnerOn = false; }
 
     //Powerup Repeats
     private void PowerupRepeatCurrent()
@@ -78,8 +80,6 @@ public class SC_SpawnManager : MonoBehaviour
         enemySpawner.CurrentPowerup = currentPowerup;
     }
 
-    private void SpawnModeOn() { enemySpawner.RandomSpawnerOn = true; }
-    private void SpawnModeOf() { enemySpawner.RandomSpawnerOn = false; }
 
     public void SlugEnemySpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
     {

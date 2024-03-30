@@ -128,6 +128,12 @@ public class SC_Player : MonoBehaviour
         }
     }
 
+    public void SpeedUpFromPowerup()        //max maar 2 keer   (voor nu idee)
+    {
+        setMoveSpeed += 2;
+        currentMoveSpeed = setMoveSpeed;
+    }
+
 
     public void SuperShooterModeSpeed()
     {

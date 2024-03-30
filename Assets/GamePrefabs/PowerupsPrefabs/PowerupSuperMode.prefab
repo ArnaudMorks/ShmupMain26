@@ -147,4 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _despawnPoint: -21
+  powerupPickupSpeedBase: 10
   powerupPickupSpeed: 10
+  pickupSpeedOffset: 5

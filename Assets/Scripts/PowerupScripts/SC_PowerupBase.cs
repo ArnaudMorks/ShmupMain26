@@ -6,7 +6,9 @@ public class SC_PowerupBase : MonoBehaviour
 {
     [SerializeField] protected float _despawnPoint = -21;
     protected Rigidbody rigidBody;
+    [SerializeField] protected float powerupPickupSpeedBase;
     [SerializeField] protected float powerupPickupSpeed = 10;
+    [SerializeField] protected float pickupSpeedOffset;
 
     protected virtual void Awake()
     {
@@ -15,6 +17,11 @@ public class SC_PowerupBase : MonoBehaviour
 
     protected virtual void Start()
     {
+        float minOffset = powerupPickupSpeedBase - pickupSpeedOffset;
+        float maxOffset = powerupPickupSpeedBase + pickupSpeedOffset;
+
+        powerupPickupSpeed = Random.Range(minOffset, maxOffset);
+
         rigidBody.AddForce(transform.forward * powerupPickupSpeed);
     }
 

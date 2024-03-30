@@ -11,7 +11,7 @@ public class SC_MapSpeedSetter : MonoBehaviour
     private SC_GameWorldMove gameWorldMove;
 
     private SC_SpawnManager spawnManager;
-    private SC_EnemySpawner enemySpawner;
+    //private SC_EnemySpawner enemySpawner;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class SC_MapSpeedSetter : MonoBehaviour
         gameWorldMove = FindObjectOfType<SC_GameWorldMove>();
 
         spawnManager = FindObjectOfType<SC_SpawnManager>();
-        enemySpawner = FindObjectOfType<SC_EnemySpawner>();
+        //enemySpawner = FindObjectOfType<SC_EnemySpawner>();
         startBeforeDisable = true;
     }
 

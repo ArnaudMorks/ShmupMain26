@@ -120,7 +120,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _despawnPoint: -21
-  powerupPickupSpeed: 60
+  powerupPickupSpeedBase: 120
+  powerupPickupSpeed: 120
+  pickupSpeedOffset: 40
   fireRateDecrease: 0.94
 --- !u!54 &-8850630308895281646
 Rigidbody:

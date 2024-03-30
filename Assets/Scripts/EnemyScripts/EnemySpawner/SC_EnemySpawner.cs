@@ -146,7 +146,7 @@ public class SC_EnemySpawner : MonoBehaviour
                 enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
                 break;
             case 2:
-                enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), currentPowerup);
+                enemySlugPool.ActivateSlugEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation, false, currentPowerup, 0, 0);
                 break;
             default:
                 Debug.Log("Enemy spawner werkt niet");
@@ -161,7 +161,7 @@ public class SC_EnemySpawner : MonoBehaviour
     }
 
 
-    public void SpawnSpecificLocation(int currentSpecificEnemy,Vector3 thisPosition)       //wordt gebruikt door de "SC_SingleTimeSpawner"
+    public void SpawnSpecificLocation(int currentSpecificEnemy, Vector3 thisPosition, Quaternion thisRotation, bool singleSetSpeed, float customSpeed, float slugFroggerMode)       //wordt gebruikt door de "SC_SingleTimeSpawner"
     {
         switch (currentSpecificEnemy)
         {
@@ -172,7 +172,7 @@ public class SC_EnemySpawner : MonoBehaviour
                 enemyKamikazePool.ActivateKamikazeEnemy(thisPosition);
                 break;
             case 2:
-                enemySlugPool.ActivateSlugEnemy(thisPosition, currentPowerup);
+                enemySlugPool.ActivateSlugEnemy(thisPosition, thisRotation, true, currentPowerup, customSpeed, slugFroggerMode);   //als "customSpeed" 0 is dan heeft die de orginele snelheid
                 break;
             default:
                 Debug.Log("Enemy spawner werkt niet");
