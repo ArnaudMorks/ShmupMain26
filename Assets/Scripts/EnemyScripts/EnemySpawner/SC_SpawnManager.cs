@@ -74,6 +74,11 @@ public class SC_SpawnManager : MonoBehaviour
                     currentPowerup = restoreHealthPowerup;
                     enemySpawner.CurrentPowerup = currentPowerup;
                 }
+                else
+                {
+                    currentPowerup = null;
+                    enemySpawner.CurrentPowerup = currentPowerup;
+                }
 
             }
 
