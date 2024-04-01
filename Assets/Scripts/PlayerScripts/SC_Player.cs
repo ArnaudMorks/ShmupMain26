@@ -30,6 +30,7 @@ public class SC_Player : MonoBehaviour
     [Header("MaxMapWidth")]
     [SerializeField] private float lightMapWidth = 17;
     [SerializeField] private float mediumMapWidth = 22;      //basis
+    [SerializeField] private float maxMapWidth = 30;
 
     [SerializeField] private float currentMapWidth;
 
@@ -44,7 +45,7 @@ public class SC_Player : MonoBehaviour
         playerHealth = gameObject.GetComponent<SC_PlayerHealth>();
         //powerUpUI = FindObjectOfType<SC_PowerupUI>();
 
-        currentMapWidth = lightMapWidth;        //misschien later veranderen wegens save en load (respawn)
+        currentMapWidth = maxMapWidth;        //misschien later veranderen wegens save en load (respawn)
     }
 
 
@@ -76,7 +77,11 @@ public class SC_Player : MonoBehaviour
             if (movement.z > 0) { movement.z = 0; }
         }
 
-        if (transform.position.z <= -15.8)      //min height y position
+        if (transform.position.z <= -17.4)      //min height y position
+        {
+            movement.z = 1;
+        }
+        else if (transform.position.z <= -15.8)      //min height y position
         {
             if (movement.z < 0) { movement.z = 0; }
         }
@@ -152,6 +157,12 @@ public class SC_Player : MonoBehaviour
         playerHealth.EndPlayerInvincibleMode();
         invincibilityBubble.SetActive(false);
         currentMoveSpeed = baseMoveSpeed;
+    }
+
+
+    public void SetMapWidthLight()
+    {
+        currentMapWidth = lightMapWidth;        //wordt vanuit de SC_MapEdgeOnSwitch aangeroepen
     }
 
 }

@@ -560,7 +560,7 @@ MonoBehaviour:
   _scoreOnDeath: 25
   _singleSetSpeed: 0
   powerupDrop: {fileID: 0}
-  froggerModeSpeed: 100
+  froggerModeSpeed: 139
 --- !u!1 &8671361453961778011
 GameObject:
   m_ObjectHideFlags: 0

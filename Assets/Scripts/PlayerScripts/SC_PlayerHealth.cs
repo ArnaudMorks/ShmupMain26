@@ -5,11 +5,20 @@ using UnityEngine;
 public class SC_PlayerHealth : MonoBehaviour
 {
     private Coroutine _damageCoroutine;
-    private BoxCollider _collider;      //player collider
-    
+    //private BoxCollider _collider;      //player collider     OUDE VERSIE
+    private CapsuleCollider _collider;
+
 
     [SerializeField] private int _health;
+    public int CurrentHealthPlayer  //wordt NIET HIER (ge)Set maar in een fucntie
+    {
+        get { return _health; }
+    }
     [SerializeField] private int _starterHealth;
+    public int StarterHealthPlayer
+    {
+        get { return _starterHealth; }
+    }
 
     [SerializeField] private int _shield;
     [SerializeField] private int _maxShield;
@@ -20,7 +29,8 @@ public class SC_PlayerHealth : MonoBehaviour
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider>();
+        //_collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<CapsuleCollider>();
     }
 
     private void Start()
@@ -96,6 +106,16 @@ public class SC_PlayerHealth : MonoBehaviour
 
         _damageCoroutine = null;
 
+    }
+
+
+    public void RestoreHealth()
+    {
+        if (_health < _starterHealth && _health > 0)
+        {
+            _health++;
+            ServiceLocator.Main.HealthUIManager.UpdateHealthUI(_health);
+        }
     }
 
     public void SetShield()

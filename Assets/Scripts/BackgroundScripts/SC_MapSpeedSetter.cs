@@ -10,6 +10,8 @@ public class SC_MapSpeedSetter : MonoBehaviour
 
     private SC_GameWorldMove gameWorldMove;
 
+    [SerializeField] bool setSpawnManager;      //later nog types van maken
+
     private SC_SpawnManager spawnManager;
     //private SC_EnemySpawner enemySpawner;
 
@@ -23,24 +25,31 @@ public class SC_MapSpeedSetter : MonoBehaviour
         startBeforeDisable = true;
     }
 
-    private void OnDisable()
+/*    private void OnDisable()
     {
         if (startBeforeDisable)
         {
             //print("MapSpeed");
             //Destroy(this, 0.2f);    //vernietigt zichzelf bijna gelijk nadat een enemy is gespawned
-            spawnManager.SlugEnemySpawnMode();
+            if (setSpawnManager)
+            {
+                spawnManager.SlugEnemySpawnMode();
+            }
         }
 
-    }
+    }*/
 
 
     private void FixedUpdate()
     {
-        if (transform.position.z <= activateLocation && mapSpeedSet == false)
+        if (transform.position.z <= activateLocation && mapSpeedSet == false && isActiveAndEnabled)
         {
             gameWorldMove.GameWolrdMoveSpeed = newMapSpeed;
             mapSpeedSet = true;
+            if (setSpawnManager)
+            {
+                spawnManager.SlugEnemySpawnMode();
+            }
             gameObject.SetActive(false);
         }
 

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8624818123083700070}
   - component: {fileID: 1223686376581935105}
   - component: {fileID: 5440232786251321995}
-  - component: {fileID: 4826653804729242660}
   - component: {fileID: 7590300984568948506}
+  - component: {fileID: 8130667260698624199}
   m_Layer: 6
   m_Name: PlayerTest02
   m_TagString: Player
@@ -89,6 +89,7 @@ MonoBehaviour:
   invincibilityBubble: {fileID: 6429966201035651177}
   lightMapWidth: 17
   mediumMapWidth: 22
+  maxMapWidth: 30
   currentMapWidth: 0
 --- !u!114 &5440232786251321995
 MonoBehaviour:
@@ -113,27 +114,6 @@ MonoBehaviour:
   rateOfFire: 0.2
   fireRateTimer: 0
   twoTurretModeBasePlayer: 0
---- !u!65 &4826653804729242660
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 988990318104523328}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.8568821}
-  m_Center: {x: 0, y: 0, z: 0.258708}
 --- !u!114 &7590300984568948506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +132,29 @@ MonoBehaviour:
   _maxShield: 3
   _damageDelay: 0.4
   _invincibleMode: 0
+--- !u!136 &8130667260698624199
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988990318104523328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.73
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.25}
 --- !u!1 &5799839852957345475
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4039503443878004981
 Transform:
   m_ObjectHideFlags: 0

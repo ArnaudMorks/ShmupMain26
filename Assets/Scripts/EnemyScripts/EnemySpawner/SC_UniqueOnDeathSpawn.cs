@@ -3,20 +3,26 @@ using UnityEngine;
 public class SC_UniqueOnDeathSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject toSpawn;
-    private SC_SlugEnemy thisEnemy;
+    [SerializeField] private SC_SlugEnemy thisEnemy;
     private bool spawnedEnemies = false;
+    private bool thisEnabled = false;
+    [SerializeField] private Rigidbody thisRigidBody;
+    [SerializeField] private float movementSpeed;        //moet gelijk zijn als die van de slug enemy
 
-    void Start()
+    private void OnEnable()
     {
-        thisEnemy = GetComponentInParent<SC_SlugEnemy>();
+        Debug.Log("This Enabled");
+        thisEnabled = true;
+        thisRigidBody.AddForce(transform.forward * movementSpeed);
     }
-
 
     void Update()
     {
-        if (thisEnemy.HealthEnemy <= 1 && spawnedEnemies == false)
+        if ((thisEnemy.HealthEnemy <= 0 || thisEnemy.isActiveAndEnabled == false)  && spawnedEnemies == false && thisEnabled)
         {
-            Instantiate(toSpawn, transform.position, transform.rotation);       //Later misschien uit een object pool halen
+            //Instantiate(toSpawn, transform.position, transform.rotation);       //Later misschien uit een object pool halen
+            print("SPAWN");
+            toSpawn.SetActive(true);
             spawnedEnemies = true;
         }
     }
