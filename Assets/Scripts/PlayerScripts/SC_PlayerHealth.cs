@@ -53,7 +53,7 @@ public class SC_PlayerHealth : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (_invincibleMode == false)       //voor als je een powerup pakt; je kan alleen maar damage krijgen als je niet invincible bent
+        if (_invincibleMode == false)
         {
             _damageCoroutine ??= StartCoroutine(TakeDamage());
         }
