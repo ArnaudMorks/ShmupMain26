@@ -28,11 +28,13 @@ public class SC_Player : MonoBehaviour
     [SerializeField] private GameObject invincibilityBubble;
 
     [Header("MaxMapWidth")]
+    [SerializeField] private bool customWidthMode;
     [SerializeField] private float lightMapWidth = 17;
     [SerializeField] private float mediumMapWidth = 22;      //basis
     [SerializeField] private float maxMapWidth = 30;
 
     [SerializeField] private float currentMapWidth;
+
 
 
     void Start()
@@ -62,15 +64,20 @@ public class SC_Player : MonoBehaviour
 
 
         //MovmentBounds
-        if (transform.position.x >= currentMapWidth)      //max width x position
+
+        if (customWidthMode)
         {
-            if (movement.x > 0) { movement.x = 0; }
+            if (transform.position.x >= currentMapWidth)      //max width x position
+            {
+                if (movement.x > 0) { movement.x = 0; }
+            }
+
+            if (transform.position.x <= -currentMapWidth)      //min width x position
+            {
+                if (movement.x < 0) { movement.x = 0; }
+            }
         }
 
-        if (transform.position.x <= -currentMapWidth)      //min width x position
-        {
-            if (movement.x < 0) { movement.x = 0; }
-        }
 
         if (transform.position.z >= 15.8)      //max height y position
         {
