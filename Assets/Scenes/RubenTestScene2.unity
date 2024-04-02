@@ -4901,7 +4901,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.000030518}
-  m_SizeDelta: {x: 103.9919, y: 112.5169}
+  m_SizeDelta: {x: 357.4691, y: 118.0433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462110146
 MonoBehaviour:
@@ -7318,7 +7318,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.000030518}
-  m_SizeDelta: {x: 103.9919, y: 112.5169}
+  m_SizeDelta: {x: 259.5328, y: 114.5328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689380530
 MonoBehaviour:
@@ -14821,6 +14821,10 @@ PrefabInstance:
       propertyPath: mainPlayerBulletSpeed
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 5440232786251321995, guid: 3563bd2c66792bf48b1b89a79ca1e57a, type: 3}
+      propertyPath: twoTurretModeBasePlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6429966201035651177, guid: 3563bd2c66792bf48b1b89a79ca1e57a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16064,7 +16068,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.000030518}
-  m_SizeDelta: {x: 103.9919, y: 112.5169}
+  m_SizeDelta: {x: 245.3075, y: 92.6225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1436297894
 MonoBehaviour:
