@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class SC_ObjectShaker : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
     private float _shakeIntensity;
     private bool _isShaking;
-    private Vector3 _position;
+    [SerializeField] private Transform _positionTransform;
     private float _shakeSpeed;
     private float _shakeInterval;
-
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
 
     private void Update()
     {
@@ -28,14 +22,13 @@ public class SC_ObjectShaker : MonoBehaviour
             Vector2 randomPosition = Random.insideUnitCircle * _shakeIntensity;
             Vector3 displacement = new(randomPosition.x, 0f, randomPosition.y);
 
-            _rigidbody.position = _position + displacement;
+            transform.position = _positionTransform.position + displacement;
             _shakeSpeed = _shakeInterval;
         }
     }
 
     public void ShakeObject(float intensity, float shakeSpeed)
     {
-        _position = transform.position;
         _shakeIntensity = intensity;
         _shakeInterval = shakeSpeed;
         _isShaking = true;

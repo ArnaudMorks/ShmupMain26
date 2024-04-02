@@ -2205,7 +2205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310061660994704154, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: _health
-      value: 10
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5310061660994704154, guid: 0976ef1a7b799544ba9f3d8117f9c884, type: 3}
       propertyPath: _retreatDelay

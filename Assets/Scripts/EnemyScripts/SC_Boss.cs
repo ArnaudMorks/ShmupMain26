@@ -79,7 +79,7 @@ public class SC_Boss : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _objectShaker = GetComponent<SC_ObjectShaker>();
+        _objectShaker = GetComponentInChildren<SC_ObjectShaker>();
         _storedAttackInterval = _attackInterval;
         _state = BossState.arriving;
         _totalHealth = _health;
@@ -119,7 +119,7 @@ public class SC_Boss : MonoBehaviour
 
             if (_attackInterval > 0) { return; }
 
-            int randomIndex = Random.Range(1, 2);
+            int randomIndex = Random.Range(0, 3);
             _state = BossState.attacking;
             _attackInterval = _storedAttackInterval;
 
