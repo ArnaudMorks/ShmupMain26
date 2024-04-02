@@ -27,7 +27,7 @@ public class SC_ModelMovementPlayer : MonoBehaviour
                     _tiltIndex += _tiltSpeed * Time.deltaTime;
                 }
 
-                if(_tiltIndex <= 0.002f && _tiltIndex >= -0.002f)
+                if(_tiltIndex <= 0.02f && _tiltIndex >= -0.02f)
                 {
                     _tiltIndex = 0;
                 }
