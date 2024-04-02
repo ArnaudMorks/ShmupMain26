@@ -18,6 +18,7 @@ public class SC_PowerupSpeedUp : SC_PowerupBase
         if (playerHealth != null)
         {
             playerMovement.SpeedUpFromPowerup();
+            ServiceLocator.Main.PickupUIManager.ModifyPickupAmount("MovementSpeed");
             Destroy(gameObject);
         }
     }

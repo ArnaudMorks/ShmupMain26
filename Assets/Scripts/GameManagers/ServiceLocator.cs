@@ -10,6 +10,7 @@ public class ServiceLocator : MonoBehaviour
     public SC_ScoreUIManager ScoreUIManager { get; private set; }
     public SC_HealthUIManager HealthUIManager { get; private set; }
     public SC_ShieldUIManager ShieldUIManager { get; private set; }
+    public SC_PickupUIManager PickupUIManager { get; private set; }
 
     private void Awake()
     {
@@ -26,5 +27,6 @@ public class ServiceLocator : MonoBehaviour
         ScoreUIManager = GetComponentInChildren<SC_ScoreUIManager>();
         HealthUIManager = GetComponentInChildren<SC_HealthUIManager>();
         ShieldUIManager = GetComponentInChildren<SC_ShieldUIManager>();
+        PickupUIManager = GetComponentInChildren<SC_PickupUIManager>();
     }
 }

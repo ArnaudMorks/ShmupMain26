@@ -22,6 +22,7 @@ public class SC_PowerupBulletSpeed : SC_PowerupBase
         if (playerHealth != null)
         {
             IncreaseBulletSpeed();
+            ServiceLocator.Main.PickupUIManager.ModifyPickupAmount("BulletSpeed");
             Destroy(gameObject);
         }
     }

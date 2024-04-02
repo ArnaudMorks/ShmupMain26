@@ -22,6 +22,7 @@ public class SC_PowerupFireRate : SC_PowerupBase
         if (playerHealth != null)
         {
             playerShooting.RateOfFire *= fireRateDecrease;
+            ServiceLocator.Main.PickupUIManager.ModifyPickupAmount("FireRate");
             Destroy(gameObject);
         }
     }
