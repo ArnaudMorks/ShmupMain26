@@ -25,7 +25,7 @@ public class SC_PoolEnemyBullets : MonoBehaviour
     }
 
 
-    public SC_BulletStandard ActivateEnemyBullet(Vector3 position)
+    public SC_BulletStandard ActivateEnemyBullet(Vector3 position, Quaternion rotation)
     {
         SC_BulletStandard availableEnemyBullet = null;
 
@@ -42,7 +42,9 @@ public class SC_PoolEnemyBullets : MonoBehaviour
 
         availableEnemyBullet.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
 
-       // availableBullet.SetEnemyBulletSpeed(bulletSpeed);      //zit in de bullet
+        availableEnemyBullet.transform.localRotation = rotation;
+
+        // availableBullet.SetEnemyBulletSpeed(bulletSpeed);      //zit in de bullet
 
         availableEnemyBullet.gameObject.SetActive(true);
         return availableEnemyBullet;

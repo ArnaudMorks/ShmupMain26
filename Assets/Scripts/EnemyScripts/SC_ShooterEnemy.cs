@@ -17,6 +17,12 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
     [SerializeField] private float projectileSpawnLocationZDistance;     //wordt van de huidige Z positie afgetrokken
 
+    [SerializeField] private bool isBoss = false;
+    [SerializeField] private int bossBurstAmount;
+
+    [SerializeField] private GameObject shootLeftRotationRef = null;
+    [SerializeField] private GameObject shootRightRotationRef = null;
+
 
     protected override void Start()
     {
@@ -29,18 +35,29 @@ public class SC_ShooterEnemy : SC_EnemyBase
     {
         base.OnEnable();
 
+        if (isBoss == false) { _burstAmount = Random.Range(2, 5); }
+        else { _burstAmount = bossBurstAmount; }
+
         if (startedShooting && startedShooting)
         {
             // Start shooting projectiles in bursts
             bulletPool = FindObjectOfType<SC_PoolEnemyBullets>();
             StartCoroutine(ShootBullets());
         }
+
+
+        float minOffset = _enemySpeedBase - _enemySpeedOffset;
+        float maxOffset = _enemySpeedBase + _enemySpeedOffset;
+
+        if (_singleSetSpeed) { _enemySpeed = _enemySpeedBase; }
+        else { _enemySpeed = Random.Range(minOffset, maxOffset); }
+
     }
 
     private void FixedUpdate()
     {
         // Move forward
-        _rigidBody.MovePosition(transform.position + -_enemySpeed * Time.deltaTime * Vector3.forward);
+        if (_enemySpeed != 0) { _rigidBody.MovePosition(transform.position + -_enemySpeed * Time.deltaTime * Vector3.forward); }
 
         if (startBeforeActivate && transform.position.z <= 16 && startedShooting == false)
         {
@@ -55,6 +72,7 @@ public class SC_ShooterEnemy : SC_EnemyBase
         // Because we we will run into a yield statement, this is perfectly safe
         while(true)
         {
+
             // Instantiate the prefab amount of times we want in a burst and wait the total burst time divided by the burst amount after every shot
             for(int i = 0; i < _burstAmount; i++)
             {
@@ -63,7 +81,13 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
                 Vector3 bulletSpawnPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z - projectileSpawnLocationZDistance);   //zorgt dat de bullet iets verder naar voren spawned
 
-                enemyBullet = bulletPool.ActivateEnemyBullet(bulletSpawnPosition);
+                enemyBullet = bulletPool.ActivateEnemyBullet(bulletSpawnPosition, transform.rotation);
+
+                if (isBoss)
+                {
+                    enemyBullet = bulletPool.ActivateEnemyBullet(shootLeftRotationRef.transform.position, shootLeftRotationRef.transform.rotation);
+                    enemyBullet = bulletPool.ActivateEnemyBullet(shootRightRotationRef.transform.position, shootRightRotationRef.transform.rotation);
+                }
 
                 yield return new WaitForSeconds(_burstTime / _burstAmount);
             }

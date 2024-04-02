@@ -6,11 +6,14 @@ public class SC_MapSpeedSetter : MonoBehaviour
     [SerializeField] private float newMapSpeed;
     [SerializeField] bool mapSpeedSet = false;
 
-    private bool startBeforeDisable = false;
+    //private bool startBeforeDisable = false;
 
     private SC_GameWorldMove gameWorldMove;
 
-    [SerializeField] bool setSpawnManager;      //later nog types van maken
+    [SerializeField] bool setSlugSpawner;      //later nog types van maken
+    [SerializeField] bool setShooterSpawner;
+    [SerializeField] bool setAllBasicEnemiesSpawner;
+    [SerializeField] bool setKamikazeSpawner;
 
     private SC_SpawnManager spawnManager;
     //private SC_EnemySpawner enemySpawner;
@@ -22,7 +25,7 @@ public class SC_MapSpeedSetter : MonoBehaviour
 
         spawnManager = FindObjectOfType<SC_SpawnManager>();
         //enemySpawner = FindObjectOfType<SC_EnemySpawner>();
-        startBeforeDisable = true;
+        //startBeforeDisable = true;
     }
 
 /*    private void OnDisable()
@@ -42,14 +45,27 @@ public class SC_MapSpeedSetter : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.z <= activateLocation && mapSpeedSet == false && isActiveAndEnabled)
+        if (transform.position.z <= activateLocation && transform.position.z >= -30f && mapSpeedSet == false && isActiveAndEnabled)
         {
             gameWorldMove.GameWolrdMoveSpeed = newMapSpeed;
             mapSpeedSet = true;
-            if (setSpawnManager)
+            if (setSlugSpawner)
             {
                 spawnManager.SlugEnemySpawnMode();
             }
+            else if (setShooterSpawner)
+            {
+                spawnManager.ShooterEnemySpawnMode();
+            }
+            else if (setAllBasicEnemiesSpawner)
+            {
+                spawnManager.BasicEnemiesSpawnMode();
+            }
+            else if (setKamikazeSpawner)
+            {
+                spawnManager.KamikazeEnemySpawnMode();
+            }
+
             gameObject.SetActive(false);
         }
 

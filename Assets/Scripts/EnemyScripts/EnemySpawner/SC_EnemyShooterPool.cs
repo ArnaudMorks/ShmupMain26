@@ -7,6 +7,7 @@ public class SC_EnemyShooterPool : MonoBehaviour
     [SerializeField] private SC_ShooterEnemy shooterPrefab = null;
     private SC_ShooterEnemy[] poolEnemies = null;
 
+    [SerializeField] private float normalShooterSpeed = 4;     //moet zelfde zijn als in de GamePrefab
 
     private void Awake()
     {
@@ -14,23 +15,30 @@ public class SC_EnemyShooterPool : MonoBehaviour
     }
 
 
-    public SC_ShooterEnemy ActivateShooterEnemy(Vector3 position)
+    public SC_ShooterEnemy ActivateShooterEnemy(Vector3 position, bool singleSetSpeed, GameObject normalPowerUp, float customSpeed)
     {
-        SC_ShooterEnemy availableShooterEnemies = null;
+        SC_ShooterEnemy availableShooterEnemy = null;
 
         for (int i = 0; i < poolEnemies.Length; i++)
         {
             if (poolEnemies[i].isActiveAndEnabled == false)
             {
-                availableShooterEnemies = poolEnemies[i];
+                availableShooterEnemy = poolEnemies[i];
                 break;
             }
         }
 
-        availableShooterEnemies.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
+        availableShooterEnemy.transform.position = position;      //zit in de bullet maar wordt uit de shooter gehaald
 
-        availableShooterEnemies.gameObject.SetActive(true);
-        return availableShooterEnemies;
+        availableShooterEnemy.SingleSetSpeed = singleSetSpeed;
+
+        availableShooterEnemy.PowerupOnDeath(normalPowerUp);
+
+        if (customSpeed != 0) { availableShooterEnemy.EnemySpeedBase = customSpeed; }
+        else { availableShooterEnemy.EnemySpeedBase = normalShooterSpeed; }
+
+        availableShooterEnemy.gameObject.SetActive(true);
+        return availableShooterEnemy;
     }
 
 

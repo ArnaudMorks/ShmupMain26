@@ -5,6 +5,8 @@ public class SC_MapEdgeOnSwitch : MonoBehaviour
     private SC_Player player;
     [SerializeField] float setLocation = 18.16f;
 
+    [SerializeField] private bool setToLight;
+    [SerializeField] private bool setToMedium;
 
     void Start()
     {
@@ -16,7 +18,8 @@ public class SC_MapEdgeOnSwitch : MonoBehaviour
     {
         if (transform.position.z <= setLocation && isActiveAndEnabled)
         {
-            player.SetMapWidthLight();
+            if (setToLight) { player.SetMapWidthLight(); }
+            else if (setToMedium) { player.SetMapWidthMedium(); }
             gameObject.SetActive(false);
         }
     }

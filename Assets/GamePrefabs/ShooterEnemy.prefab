@@ -199,12 +199,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _despawnPoint: -20
   _enemySpeedBase: 4
-  _enemySpeedOffset: 0
+  _enemySpeedOffset: 0.5
   _enemySpeed: 4
   _healthBase: 3
   _health: 3
   _damageDelay: 0
   _scoreOnDeath: 100
+  _singleSetSpeed: 0
   powerupDrop: {fileID: 0}
   _bulletSpawnPoint: {fileID: 0}
   _burstAmount: 3

@@ -14,16 +14,19 @@ public class SC_EnemySpawner : MonoBehaviour
     //private GameObject currentEnemy;      wordt nu niet gebruikt
     //private float spawnRateUp = 8;    wordt nu niet gebruikt
     [Header("SpawnRates")]
-    [SerializeField] private float beginSlugSpawnRate;
+    [SerializeField] private float beginSlugSpawnRate;      
 
-    [SerializeField] private float highSpawnRate = 0.5f;
+    //[SerializeField] private float highSpawnRate = 0.5f;        //zit in de Spawn Manager
 
-    [SerializeField] private float currentSpawnRate;
-    public float CurrentSpawnRate
+    [SerializeField] private float currentSpawnRateBase;
+    public float CurrentSpawnRate       //set de Base versie
     {
-        get { return currentSpawnRate; }
-        set { currentSpawnRate = value; }
+        get { return currentSpawnRateBase; }
+        set { currentSpawnRateBase = value; }
     }
+
+    [SerializeField] private float currentSpawnRate;        //hier wordt offset bij gebruikt
+    [SerializeField] private float spawnRateOffset;
 
     [SerializeField] private float spawnTimer = 0;      //zodra deze "0" is dan wordt er iets gespawned
 
@@ -31,6 +34,7 @@ public class SC_EnemySpawner : MonoBehaviour
     [Header("MapOffsets")]
     [SerializeField] private float firstLevelLeftOrRightSpawnOffset = 16.8f;
     [SerializeField] private float secondLevelLeftOrRightSpawnOffset = 21;
+
     [SerializeField] private float currentLeftOrRightSpawnOffset;
 
     //[SerializeField] private GameObject[] enemyTypeArray;     OUDE MANIER
@@ -65,7 +69,8 @@ public class SC_EnemySpawner : MonoBehaviour
         enemyKamikazePool = FindObjectOfType<SC_EnemyKamikazePool>();
         enemySlugPool = FindObjectOfType<SC_EnemySlugPool>();
 
-        currentSpawnRate = beginSlugSpawnRate;
+        currentSpawnRateBase = beginSlugSpawnRate;
+        currentSpawnRate = currentSpawnRateBase;
         currentLeftOrRightSpawnOffset = firstLevelLeftOrRightSpawnOffset;       //later een "if" erbij als je in een ander level spawned
     }
 
@@ -79,6 +84,7 @@ public class SC_EnemySpawner : MonoBehaviour
         {
             CurrentSpawnLevel();
             SpawnEnemy();
+            SetSpawnRate();
             spawnTimer = 0;
 
             //maak spawn rate random
@@ -123,6 +129,12 @@ public class SC_EnemySpawner : MonoBehaviour
             case 4:
                 currentEnemy = Random.Range(0, 3);      //alle enemies
                 break;
+            case 5:
+                currentEnemy = 0;
+                break;
+            case 6:
+                currentEnemy = 1;
+                break;
             default:
                 Debug.Log("Enemy spawner werkt niet");
                 break;
@@ -140,7 +152,7 @@ public class SC_EnemySpawner : MonoBehaviour
         switch (currentEnemy)
         {
             case 0:
-                enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
+                enemyShooterPool.ActivateShooterEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), false, currentPowerup, 0);
                 break;
             case 1:
                 enemyKamikazePool.ActivateKamikazeEnemy(new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z));
@@ -160,13 +172,25 @@ public class SC_EnemySpawner : MonoBehaviour
         //Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
     }
 
+    private void SetSpawnRate()
+    {
+        spawnRateOffset = currentSpawnRateBase * 0.20f;  //de offset is nu 20% van de normale spawn rate
+
+        float minOffset = currentSpawnRateBase - spawnRateOffset;
+        float maxOffset = currentSpawnRateBase + spawnRateOffset;
+
+        currentSpawnRate = Random.Range(minOffset, maxOffset);
+
+    }
+
+
 
     public void SpawnSpecificLocation(int currentSpecificEnemy, Vector3 thisPosition, Quaternion thisRotation, bool singleSetSpeed, float customSpeed, float slugFroggerMode)       //wordt gebruikt door de "SC_SingleTimeSpawner"
     {
         switch (currentSpecificEnemy)
         {
             case 0:
-                enemyShooterPool.ActivateShooterEnemy(thisPosition);
+                enemyShooterPool.ActivateShooterEnemy(thisPosition, singleSetSpeed, currentPowerup, customSpeed);
                 break;
             case 1:
                 enemyKamikazePool.ActivateKamikazeEnemy(thisPosition);
@@ -178,6 +202,12 @@ public class SC_EnemySpawner : MonoBehaviour
                 Debug.Log("Enemy spawner werkt niet");
                 break;
         }
+    }
+
+
+    public void SetSpawnWidthAreaSecondLevel()
+    {
+        currentLeftOrRightSpawnOffset = secondLevelLeftOrRightSpawnOffset;
     }
 
 }

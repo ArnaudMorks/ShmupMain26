@@ -5,6 +5,9 @@ public class SC_SpawnManager : MonoBehaviour
     private SC_PlayerHealth playerHealth;
     private SC_EnemySpawner enemySpawner;
 
+    [SerializeField] private float slowSpawnRate;
+    [SerializeField] private float mediumSpawnRate;
+
     [SerializeField] private GameObject fireRatePowerup = null;
     [SerializeField] private GameObject bulletSpeedPowerup = null;
     [SerializeField] private GameObject currentPowerup = null;
@@ -101,7 +104,7 @@ public class SC_SpawnManager : MonoBehaviour
     }
 
 
-    private void StopRepeat()
+    public void StopRepeat()
     {
         powerUpRepeatOn = false;
         PowerupIsNull();
@@ -131,11 +134,14 @@ public class SC_SpawnManager : MonoBehaviour
     }
 
 
+
+    //LEVEL 1
     public void SlugEnemySpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
     {
         //basis setting horen bij deze spawn mode
+        enemySpawner.CurrentSpawnRate = mediumSpawnRate;
         Invoke("SpawnModeOn", 2);
-        Invoke("SlugSpawnRateUp", 10);
+        Invoke("SlugSpawnRateUp", 8);
     }
 
     private void SlugSpawnRateUp()
@@ -148,6 +154,84 @@ public class SC_SpawnManager : MonoBehaviour
         Invoke("PowerupRepeatCurrent", 2);
         Invoke("RestoreHpRepeatCurrent", 2);
         Invoke("StopRepeat", 45);       //stopt ook alle Invokes
+    }
+
+
+
+
+    //LEVEL 2
+    public void ShooterEnemySpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
+    {
+        enemySpawner.CurrentSpawnRate = slowSpawnRate;
+        enemySpawner.SetSpawnWidthAreaSecondLevel();
+        enemySpawner.SpawnerLevel = 5;      //alleen de shooter enemy spawned nu
+        //basis setting horen bij deze spawn mode
+        Invoke("SpawnModeOn", 2);
+        Invoke("ShooterSpawnerRateUp", 10);
+    }
+
+    private void ShooterSpawnerRateUp()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.64f;
+        randomBasePowerup = true;
+        powerUpRepeatOn = false;
+        //Invoke("RandomBasePowerup", 2);
+        //Invoke("PowerupRepeatCurrent", 2);
+        //Invoke("RestoreHpRepeatCurrent", 2);
+        //Invoke("StopRepeat", 28);
+    }
+
+
+
+    public void BasicEnemiesSpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
+    {
+        enemySpawner.CurrentSpawnRate = mediumSpawnRate;
+        enemySpawner.SetSpawnWidthAreaSecondLevel();
+        enemySpawner.SpawnerLevel = 4;      //alle basic enemies
+        //basis setting horen bij deze spawn mode
+        Invoke("SpawnModeOn", 2);
+        Invoke("BasicEnemiesSpawnerRateUpOne", 10);
+    }
+
+    private void BasicEnemiesSpawnerRateUpOne()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.6f;
+        randomBasePowerup = true;
+        powerUpRepeatOn = false;
+        randomBasePowerup = true;
+        powerUpRepeatOn = true;         //deze wordt gebruikt in de repeat
+        Invoke("RandomBasePowerup", 1.8f);
+        Invoke("PowerupRepeatCurrent", 1.8f);
+        Invoke("RestoreHpRepeatCurrent", 1.8f);
+        Invoke("BasicEnemiesSpawnerRateUpTwo", 60);
+    }
+
+    private void BasicEnemiesSpawnerRateUpTwo()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.6f;
+    }
+
+
+
+    public void KamikazeEnemySpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
+    {
+        enemySpawner.CurrentSpawnRate = slowSpawnRate;
+        enemySpawner.SetSpawnWidthAreaSecondLevel();
+        enemySpawner.SpawnerLevel = 6;      //alleen de kamikaze enemy spawned nu
+        //basis setting horen bij deze spawn mode
+        Invoke("SpawnModeOn", 1);
+        Invoke("KamikazeSpawnerRateUp", 8);
+    }
+
+    private void KamikazeSpawnerRateUp()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.62f;
+        //randomBasePowerup = true;
+        //powerUpRepeatOn = false;
+        //Invoke("RandomBasePowerup", 2);
+        //Invoke("PowerupRepeatCurrent", 2);
+        //Invoke("RestoreHpRepeatCurrent", 2);
+        //Invoke("StopRepeat", 28);
     }
 
 

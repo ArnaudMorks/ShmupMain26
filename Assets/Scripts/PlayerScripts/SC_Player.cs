@@ -165,4 +165,10 @@ public class SC_Player : MonoBehaviour
         currentMapWidth = lightMapWidth;        //wordt vanuit de SC_MapEdgeOnSwitch aangeroepen
     }
 
+
+    public void SetMapWidthMedium()
+    {
+        currentMapWidth = mediumMapWidth;        //wordt vanuit de SC_MapEdgeOnSwitch aangeroepen
+    }
+
 }
