@@ -3223,7 +3223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fa11841d728d748b99a2cc335e7bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 600
+  poolSize: 800
   bulletPrefab: {fileID: -1019964523280135838, guid: b972205263bc24a4b9acdc348940aa0d, type: 3}
 --- !u!4 &270884175 stripped
 Transform:
@@ -13874,6 +13874,10 @@ PrefabInstance:
       propertyPath: powerupDrop
       value: 
       objectReference: {fileID: 505379192240764529, guid: 6c245571148961b498332c9ff67182e8, type: 3}
+    - target: {fileID: 6920405949012871883, guid: 255a5580da9eda742931d628e78cf681, type: 3}
+      propertyPath: _deathEffect
+      value: 
+      objectReference: {fileID: 4922789740678470652, guid: 486dad7e2638ff7418448c42aff4c271, type: 3}
     - target: {fileID: 6920405949012871883, guid: 255a5580da9eda742931d628e78cf681, type: 3}
       propertyPath: _enemySpeedBase
       value: 26

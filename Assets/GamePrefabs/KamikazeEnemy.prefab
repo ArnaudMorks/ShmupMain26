@@ -191,7 +191,7 @@ MonoBehaviour:
   _scoreOnDeath: 25
   _singleSetSpeed: 0
   powerupDrop: {fileID: 0}
-  _deathEffect: {fileID: 4922789740678470652, guid: f78c8dddbb738a349a4efdfa9c383800, type: 3}
+  _deathEffect: {fileID: 4922789740678470652, guid: b1db8e297bf242745b98b0f2b2ced6ae, type: 3}
   _rotationBase: {x: 0, y: 1, z: 0, w: 0}
   _enemyStopDrag: 2.5
   _playerLookTime: 1.5

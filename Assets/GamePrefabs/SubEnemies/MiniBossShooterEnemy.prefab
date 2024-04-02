@@ -555,6 +555,7 @@ MonoBehaviour:
   _scoreOnDeath: 1000
   _singleSetSpeed: 1
   powerupDrop: {fileID: 505379192240764529, guid: 6c245571148961b498332c9ff67182e8, type: 3}
+  _deathEffect: {fileID: 4922789740678470652, guid: 486dad7e2638ff7418448c42aff4c271, type: 3}
   _bulletSpawnPoint: {fileID: 0}
   _burstAmount: 3
   _burstTime: 0.7
