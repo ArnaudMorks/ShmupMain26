@@ -207,6 +207,7 @@ MonoBehaviour:
   _scoreOnDeath: 100
   _singleSetSpeed: 0
   powerupDrop: {fileID: 0}
+  _deathEffect: {fileID: 4922789740678470652, guid: f78c8dddbb738a349a4efdfa9c383800, type: 3}
   _bulletSpawnPoint: {fileID: 0}
   _burstAmount: 3
   _burstTime: 0.4
@@ -215,6 +216,10 @@ MonoBehaviour:
   startBeforeActivate: 0
   startedShooting: 0
   projectileSpawnLocationZDistance: 1.6
+  isBoss: 0
+  bossBurstAmount: 0
+  shootLeftRotationRef: {fileID: 0}
+  shootRightRotationRef: {fileID: 0}
 --- !u!1 &5840221661717585298
 GameObject:
   m_ObjectHideFlags: 0

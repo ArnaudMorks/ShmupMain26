@@ -37,6 +37,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
     }
 
     [SerializeField] protected GameObject powerupDrop = null;
+    [SerializeField] protected GameObject _deathEffect;
 
 
     protected virtual void Awake()
@@ -95,6 +96,7 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
             if (powerupDrop != null) { Instantiate(powerupDrop, transform.position, transform.rotation); }
 
+            Instantiate(_deathEffect, transform.position, Quaternion.Euler(-90, 0, 0), null);
             gameObject.SetActive(false);
         }
 
