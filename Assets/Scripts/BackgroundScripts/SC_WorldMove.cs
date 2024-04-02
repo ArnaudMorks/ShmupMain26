@@ -9,5 +9,6 @@ public class SC_WorldMove : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position -= new Vector3(0, 0, moveSpeed * Time.fixedDeltaTime);
+        Physics.SyncTransforms();
     }
 }

@@ -27,6 +27,10 @@ public class SC_Player : MonoBehaviour
     private SC_PowerupUI powerUpUI;     //MISSCHIEN LATER ANDERS
     [SerializeField] private GameObject invincibilityBubble;
 
+    //[SerializeField] private bool canAddForce;
+    //[SerializeField] private float canCollideKnockbackRate = 0.1f;
+    //[SerializeField] private float collideKnockbackTimer;
+
     [Header("MaxMapWidth")]
     [SerializeField] private bool customWidthMode;
     [SerializeField] private float lightMapWidth = 17;
@@ -47,6 +51,8 @@ public class SC_Player : MonoBehaviour
         playerHealth = gameObject.GetComponent<SC_PlayerHealth>();
         //powerUpUI = FindObjectOfType<SC_PowerupUI>();
 
+        //collideKnockbackTimer = canCollideKnockbackRate;
+
         currentMapWidth = maxMapWidth;        //misschien later veranderen wegens save en load (respawn)
     }
 
@@ -64,6 +70,16 @@ public class SC_Player : MonoBehaviour
 
 
         //MovmentBounds
+
+        //if (canAddForce == false && collideKnockbackTimer >= canCollideKnockbackRate)
+        //{
+        //    collideKnockbackTimer -= Time.deltaTime;        // zodra de "spawnTimer" een hoger getal is dan de "spawnRate" dan wordt er iets gespawned
+        //}
+        //else if (canAddForce == false && collideKnockbackTimer <= 0)
+        //{
+        //    canAddForce = true;
+        //}
+
 
         if (customWidthMode)
         {
@@ -108,18 +124,33 @@ public class SC_Player : MonoBehaviour
                 }*/
 
         //limit velocity if needed
+
         if (flatVelocity.magnitude > currentMoveSpeed)
         {
             Vector3 limitedVelocity = flatVelocity.normalized * currentMoveSpeed;
             myRigidbody.velocity = new Vector3(limitedVelocity.x, myRigidbody.velocity.y, limitedVelocity.z);
             //print(limitedVelocity.magnitude);
         }
+
+        /*        if (flatVelocity.magnitude > currentMoveSpeed)            nieuwe versie die niet werkt
+                {
+                    Vector3 limitedVelocity = flatVelocity.normalized * currentMoveSpeed;
+                    Vector3 currentVelocity = myRigidbody.velocity;
+                    currentVelocity += new Vector3(limitedVelocity.x, myRigidbody.velocity.y, limitedVelocity.z);
+                    myRigidbody.velocity = currentVelocity;
+                }*/
     }
 
 
     private void OnCollisionEnter(Collision collision)
     {
         myRigidbody.position += collision.contacts[0].normal * knockBackForce; //pakt eerste contact met de "[0]"; dus registreerd eerste botsting in het geval je meerdere contact punten hebt
+
+        //if (canAddForce)
+        //{
+            //canAddForce = false;
+            //myRigidbody.AddForce(collision.contacts[0].normal * knockBackForce, ForceMode.Force);
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
