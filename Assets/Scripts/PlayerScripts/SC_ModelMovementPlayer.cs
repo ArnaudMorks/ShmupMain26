@@ -1,69 +1,43 @@
 using UnityEngine;
 
-public class SC_ModelMovementPlayer : MonoBehaviour         //werkt niet goed genoeg; nu niet gebruiken
+public class SC_ModelMovementPlayer : MonoBehaviour
 {
+    [SerializeField] private float _maxAngle;
+    [SerializeField] private float _tiltSpeed;
+    [SerializeField] private AnimationCurve _tiltCurve;
+    private float _tiltIndex;
 
-    [SerializeField] private float movementX;
-    private bool rotatingRight = false;
-    private bool rotatingLeft = false;
-    private bool notRotating = true;
-
-    [SerializeField] private Transform from;
-    [SerializeField] private Transform to;
-    [SerializeField] private Transform right;
-    [SerializeField] private Transform left;        //z = 26.8
-    [SerializeField] private Transform middle;
-
-    [SerializeField] private float speed;
-    private float timeCount = 0.0f;
-
-
-    void Update()
+    private void Update()
     {
-        movementX = Input.GetAxisRaw("Horizontal");
-
-        /*        float targetFov = sprintMode ? sprintingFov : defaultFov;       //links is true, rechts is false
-
-                if (Mathf.Abs(Camera.main.fieldOfView - targetFov) >= 0.1f)
+        switch(GetMovementHorizontal())
+        {
+            case -1:
+                _tiltIndex += _tiltSpeed * Time.deltaTime;
+                break;
+            case 1:
+                _tiltIndex -= _tiltSpeed * Time.deltaTime;
+                break;
+            default:
+                if(_tiltIndex > 0)
                 {
-                    Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, targetFov, fovLerpTimer * Time.deltaTime);
-                }*/
+                    _tiltIndex -= _tiltSpeed * Time.deltaTime;
+                }
+                else if(_tiltIndex < 0)
+                {
+                    _tiltIndex += _tiltSpeed * Time.deltaTime;
+                }
 
-        if (movementX == 0)
-        {
-            if (notRotating == false)
-            {
-                timeCount = 0;
-                notRotating = true;
-            }
+                if(_tiltIndex <= 0.002f && _tiltIndex >= -0.002f)
+                {
+                    _tiltIndex = 0;
+                }
 
-            if (rotatingRight == true)
-            {
-                transform.rotation = Quaternion.Lerp(right.rotation, middle.rotation, timeCount * speed);
-            }
-            else if (rotatingLeft == true)
-            {
-                transform.rotation = Quaternion.Lerp(left.rotation, middle.rotation, timeCount * speed);
-            }
-
-            timeCount = timeCount + Time.deltaTime;
-        }
-        else if (movementX == 1)
-        {
-            if (rotatingRight == false)
-            {
-                timeCount = 0;
-                notRotating = false;
-                rotatingLeft = false;
-                from.rotation = gameObject.transform.rotation;
-                rotatingRight = true;
-            }
-
-            transform.rotation = Quaternion.Lerp(from.rotation, right.rotation, timeCount * speed);
-            timeCount = timeCount + Time.deltaTime;
+                break;
         }
 
+        _tiltIndex = Mathf.Clamp(_tiltIndex, -1, 1);
+        transform.rotation = Quaternion.Euler(0, 0, _tiltCurve.Evaluate(_tiltIndex) * _maxAngle);
     }
 
-
+    private float GetMovementHorizontal() => Input.GetAxisRaw("Horizontal");
 }
