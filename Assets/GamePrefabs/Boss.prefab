@@ -977,7 +977,7 @@ MonoBehaviour:
   _attackInterval: 7.5
   _health: 750
   _timeUntilDeath: 5
-  _enragedAttackInterval: 0
+  _enragedAttackInterval: 4
   _deathParticle: {fileID: 4203250389700919056, guid: ad0922114d983c842ae577b93831db71, type: 3}
 --- !u!1 &1468879797137459212
 GameObject:
