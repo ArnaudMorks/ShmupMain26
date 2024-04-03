@@ -73,6 +73,7 @@ public class SC_Boss : MonoBehaviour
     [SerializeField] private float _enragedAttackInterval;
     [SerializeField] private GameObject _deathParticle;
     private float _totalHealth;
+    private bool _isEnraged = false;
     private SC_ObjectShaker _objectShaker;
     private float _storedAttackInterval;
 
@@ -97,10 +98,11 @@ public class SC_Boss : MonoBehaviour
         if (_state == BossState.arriving) { return; }
 
         _health--;
-        if (_health <= _totalHealth * 0.333 && _storedAttackInterval != _enragedAttackInterval)
+        if (_health <= _totalHealth * 0.333 && !_isEnraged)
         {
             _objectShaker.ShakeObject(0.2f, 0.05f);
             _storedAttackInterval = _enragedAttackInterval;
+            _isEnraged = true;
         }
 
         if (_health <= 0 && _state != BossState.dying) 
@@ -126,12 +128,15 @@ public class SC_Boss : MonoBehaviour
             switch(randomIndex)
             {
                 case 0:
+                    print("charge attack");
                     StartCoroutine(ChargeAttack());
                     break;
                 case 1:
+                    print("shoot attack");
                     StartCoroutine(ShootMissiles());
                     break;
                 case 2:
+                    print("laser attack");
                     StartCoroutine(LaserAttack());
                     break;
             }
