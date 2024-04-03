@@ -25,6 +25,8 @@ public class SC_EnemySpawner : MonoBehaviour
         set { currentSpawnRateBase = value; }
     }
 
+    private bool swarmRateSet = false;
+    [SerializeField] private float normalCurrentSpawnRate;      //alleen gebuirken bij swarm stuk als NIET swarm enemies worden gespawned
     [SerializeField] private float currentSpawnRate;        //hier wordt offset bij gebruikt
     [SerializeField] private float spawnRateOffset;
 
@@ -61,6 +63,13 @@ public class SC_EnemySpawner : MonoBehaviour
         set { spawnerLevel = value; }
     }
 
+    [SerializeField] private bool swarmSpawnMode;
+    [SerializeField] private int swarmSpawnChance = 1;
+
+    [SerializeField] private GameObject kamikazeCircle;
+    [SerializeField] private GameObject kamikazeSwarm;
+    [SerializeField] private GameObject shooterSwarm;
+
 
     void Start()
     {
@@ -76,6 +85,15 @@ public class SC_EnemySpawner : MonoBehaviour
 
     void Update()
     {
+
+        if (swarmSpawnChance == 0 && swarmRateSet == false)
+        {
+            normalCurrentSpawnRate = currentSpawnRate;
+            currentSpawnRate *= 3;
+            swarmRateSet = true;
+        }
+
+
         if (spawnTimer < currentSpawnRate)
         {
             spawnTimer += Time.deltaTime;        // zodra de "spawnTimer" een hoger getal is dan de "spawnRate" dan wordt er iets gespawned
@@ -83,7 +101,23 @@ public class SC_EnemySpawner : MonoBehaviour
         else if (randomSpawnerOn)
         {
             CurrentSpawnLevel();
-            SpawnEnemy();
+
+            if (swarmSpawnChance != 0)
+            {
+                SpawnEnemy();
+            }
+            else
+            {
+                SpawnSwarm();
+                currentSpawnRate = normalCurrentSpawnRate;  //zet de normale spawn rate weer terug
+            }
+
+            if (swarmSpawnMode) 
+            {
+                swarmSpawnChance = Random.Range(0, 8);
+                swarmRateSet = false;
+            }
+
             SetSpawnRate();
             spawnTimer = 0;
 
@@ -172,6 +206,30 @@ public class SC_EnemySpawner : MonoBehaviour
         //Instantiate(enemyTypeArray[Random.Range(0, enemyTypeArray.Length)], new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
     }
 
+
+    private void SpawnSwarm()
+    {
+        float maxLeftPoint = transform.position.x - firstLevelLeftOrRightSpawnOffset;       //gebruikt van eerste level want goed voor de swarm
+        float maxRightPoint = transform.position.x + firstLevelLeftOrRightSpawnOffset;
+
+        switch (currentEnemy)
+        {
+            case 0:
+                Instantiate(kamikazeCircle, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                break;
+            case 1:
+                Instantiate(kamikazeSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                break;
+            case 2:
+                Instantiate(shooterSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                break;
+            default:
+                Debug.Log("Enemy spawner werkt niet");
+                break;
+        }
+    }
+
+
     private void SetSpawnRate()
     {
         spawnRateOffset = currentSpawnRateBase * 0.20f;  //de offset is nu 20% van de normale spawn rate
@@ -208,6 +266,11 @@ public class SC_EnemySpawner : MonoBehaviour
     public void SetSpawnWidthAreaSecondLevel()
     {
         currentLeftOrRightSpawnOffset = secondLevelLeftOrRightSpawnOffset;
+    }
+
+    public void SwarmSpawnChance()
+    {
+        swarmSpawnMode = true;
     }
 
 }

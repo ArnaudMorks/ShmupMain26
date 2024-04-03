@@ -46,8 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomSpawnerOn: 0
   beginSlugSpawnRate: 1.4
-  highSpawnRate: 0.5
+  currentSpawnRateBase: 0
+  normalCurrentSpawnRate: 0
   currentSpawnRate: 0
+  spawnRateOffset: 0
   spawnTimer: 0
   firstLevelLeftOrRightSpawnOffset: 16.8
   secondLevelLeftOrRightSpawnOffset: 21
@@ -58,3 +60,9 @@ MonoBehaviour:
   currentEnemy: 0
   enemySpecificRandomizer: 0
   spawnerLevel: 0
+  currentPowerup: {fileID: 0}
+  swarmSpawnMode: 0
+  swarmSpawnChance: 1
+  kamikazeCircle: {fileID: 126414766194429616, guid: 453145ad83e54fd4db0a7f74f46d882c, type: 3}
+  kamikazeSwarm: {fileID: 5903037354994610682, guid: d81c36f8f8b349e45bfff33a7544fc45, type: 3}
+  shooterSwarm: {fileID: 4196666668857157897, guid: 1126d118916bcee42b179d04929382cf, type: 3}

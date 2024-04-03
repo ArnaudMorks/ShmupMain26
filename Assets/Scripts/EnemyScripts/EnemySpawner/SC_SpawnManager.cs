@@ -186,7 +186,6 @@ public class SC_SpawnManager : MonoBehaviour
     public void BasicEnemiesSpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
     {
         enemySpawner.CurrentSpawnRate = mediumSpawnRate;
-        enemySpawner.SetSpawnWidthAreaSecondLevel();
         enemySpawner.SpawnerLevel = 4;      //alle basic enemies
         //basis setting horen bij deze spawn mode
         Invoke("SpawnModeOn", 2);
@@ -197,7 +196,7 @@ public class SC_SpawnManager : MonoBehaviour
     {
         enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.6f;
         randomBasePowerup = true;
-        powerUpRepeatOn = false;
+        //powerUpRepeatOn = false;
         randomBasePowerup = true;
         powerUpRepeatOn = true;         //deze wordt gebruikt in de repeat
         Invoke("RandomBasePowerup", 1.8f);
@@ -234,5 +233,29 @@ public class SC_SpawnManager : MonoBehaviour
         //Invoke("StopRepeat", 28);
     }
 
+
+
+    public void SwarmEnemiesSpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
+    {
+        enemySpawner.CurrentSpawnRate = mediumSpawnRate;
+        enemySpawner.SetSpawnWidthAreaSecondLevel();
+        enemySpawner.SpawnerLevel = 4;      //alle basic enemies
+        enemySpawner.SwarmSpawnChance();
+        //basis setting horen bij deze spawn mode
+        Invoke("SpawnModeOn", 1);
+        Invoke("SwarmEnemiesSpawnerRateUpOne", 10);
+    }
+
+    private void SwarmEnemiesSpawnerRateUpOne()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.5f;
+        randomBasePowerup = true;
+        randomBasePowerup = true;
+        powerUpRepeatOn = true;         //deze wordt gebruikt in de repeat
+        Invoke("RandomBasePowerup", 1.8f);
+        Invoke("PowerupRepeatCurrent", 1.8f);
+        Invoke("RestoreHpRepeatCurrent", 1.8f);
+        Invoke("BasicEnemiesSpawnerRateUpTwo", 60);
+    }
 
 }

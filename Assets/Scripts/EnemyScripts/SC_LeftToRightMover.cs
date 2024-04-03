@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter miniboss
 {
+    [SerializeField] private SC_GameWorldMove gameWorldMove;
     [SerializeField] private Rigidbody thisRigidBody;
 
     [SerializeField] private float mapWidth = 18;
@@ -15,6 +16,10 @@ public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter mi
 
     [SerializeField] private float movementSpeed;
     private int moveDirection;      // 0 is links 1 is rechts
+
+    private bool onDeathMapMoveIncrease = false;
+    [SerializeField] private float mapSpeedIncrease;
+
 
     void Start()
     {
@@ -54,6 +59,9 @@ public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter mi
 
     private void Move()
     {
+        if (onDeathMapMoveIncrease == false)
+        onDeathMapMoveIncrease = true;
+
         moveDirection = Random.Range(0, 2);
         print(moveDirection);
 

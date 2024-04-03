@@ -147,4 +147,11 @@ public class SC_PlayerShooting : MonoBehaviour
         superShooterMode = false;
     }
 
+
+    public void DoubleTurretsMode()
+    {
+        twoTurretModeBasePlayer = true;
+        rateOfFire *= 0.5f;
+    }
+
 }

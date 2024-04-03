@@ -93,9 +93,33 @@ public class SC_Player : MonoBehaviour
                 if (movement.x < 0) { movement.x = 0; }
             }
         }
+        else
+        {
+            if (transform.position.x >= 31.6)      //max height y position
+            {
+                movement.x = -1;
+            }
+            if (transform.position.x >= 30)      //max width x position
+            {
+                if (movement.x > 0) { movement.x = 0; }
+            }
+
+            if (transform.position.x <= -31.6)      //max height y position
+            {
+                movement.x = 1;
+            }
+            else if (transform.position.x <= -30)      //min width x position
+            {
+                if (movement.x < 0) { movement.x = 0; }
+            }
+        }
 
 
-        if (transform.position.z >= 15.8)      //max height y position
+        if (transform.position.z >= 17.4)      //max height y position
+        {
+            movement.z = -1;
+        }
+        else if (transform.position.z >= 15.8)      //max height y position
         {
             if (movement.z > 0) { movement.z = 0; }
         }
@@ -195,6 +219,11 @@ public class SC_Player : MonoBehaviour
         playerHealth.EndPlayerInvincibleMode();
         invincibilityBubble.SetActive(false);
         currentMoveSpeed = baseMoveSpeed;
+    }
+
+    public void SuperFireRateMode()
+    {
+        playerShooting.DoubleTurretsMode();
     }
 
 

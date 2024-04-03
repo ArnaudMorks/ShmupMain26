@@ -14,6 +14,7 @@ public class SC_MapSpeedSetter : MonoBehaviour
     [SerializeField] bool setShooterSpawner;
     [SerializeField] bool setAllBasicEnemiesSpawner;
     [SerializeField] bool setKamikazeSpawner;
+    [SerializeField] bool setSwarmSpawner;
 
     private SC_SpawnManager spawnManager;
     //private SC_EnemySpawner enemySpawner;
@@ -64,6 +65,10 @@ public class SC_MapSpeedSetter : MonoBehaviour
             else if (setKamikazeSpawner)
             {
                 spawnManager.KamikazeEnemySpawnMode();
+            }
+            else if (setSwarmSpawner)
+            {
+                spawnManager.SwarmEnemiesSpawnMode();
             }
 
             gameObject.SetActive(false);

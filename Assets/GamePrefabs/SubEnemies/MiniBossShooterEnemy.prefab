@@ -554,7 +554,7 @@ MonoBehaviour:
   _damageDelay: 0
   _scoreOnDeath: 1000
   _singleSetSpeed: 1
-  powerupDrop: {fileID: 505379192240764529, guid: 6c245571148961b498332c9ff67182e8, type: 3}
+  powerupDrop: {fileID: 6485571181833274529, guid: 8b3e4e387ac14c64eba1c0d17b20d677, type: 3}
   _deathEffect: {fileID: 4922789740678470652, guid: 486dad7e2638ff7418448c42aff4c271, type: 3}
   _bulletSpawnPoint: {fileID: 0}
   _burstAmount: 3
@@ -580,9 +580,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a204e018015f18743ac087ddaf2fc658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameWorldMove: {fileID: 0}
   thisRigidBody: {fileID: 8341044606484607840}
   mapWidth: 18
   movementSpeed: 4
+  mapSpeedIncrease: 0
 --- !u!1 &8515890809938170052
 GameObject:
   m_ObjectHideFlags: 0
