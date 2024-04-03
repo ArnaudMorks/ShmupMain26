@@ -16,4 +16,5 @@ public class SC_GameWorldMove : MonoBehaviour           //zit op de "World" Game
     {
         transform.position -= new Vector3(0, 0, gameWorldMoveSpeed * Time.fixedDeltaTime);
     }
+
 }
