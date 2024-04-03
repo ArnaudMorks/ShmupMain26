@@ -94,6 +94,7 @@ public class SC_PlayerHealth : MonoBehaviour
 
         if (_health <= 0)
         {
+            ServiceLocator.Main.DeathScreen.ShowDeathScreen();
             Destroy(gameObject);
         }
 

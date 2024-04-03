@@ -11,6 +11,7 @@ public class ServiceLocator : MonoBehaviour
     public SC_HealthUIManager HealthUIManager { get; private set; }
     public SC_ShieldUIManager ShieldUIManager { get; private set; }
     public SC_PickupUIManager PickupUIManager { get; private set; }
+    public SC_DeathScreen DeathScreen { get; private set; }
 
     private void Awake()
     {
@@ -28,5 +29,6 @@ public class ServiceLocator : MonoBehaviour
         HealthUIManager = GetComponentInChildren<SC_HealthUIManager>();
         ShieldUIManager = GetComponentInChildren<SC_ShieldUIManager>();
         PickupUIManager = GetComponentInChildren<SC_PickupUIManager>();
+        DeathScreen = GetComponentInChildren<SC_DeathScreen>();
     }
 }
