@@ -148,6 +148,7 @@ public class SC_Boss : MonoBehaviour
         yield return new WaitForSeconds(_timeUntilDeath);
 
         Instantiate(_deathParticle, transform.position - new Vector3(0, 0, 17), Quaternion.Euler(-90, 0, 0), null);
+        ServiceLocator.Main.VictoryScreen.ShowVictoryScreen();
         Destroy(gameObject);
     }
 
