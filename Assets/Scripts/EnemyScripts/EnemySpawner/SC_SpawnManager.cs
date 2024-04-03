@@ -194,7 +194,7 @@ public class SC_SpawnManager : MonoBehaviour
 
     private void BasicEnemiesSpawnerRateUpOne()
     {
-        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.6f;
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.76f;
         randomBasePowerup = true;
         //powerUpRepeatOn = false;
         randomBasePowerup = true;
@@ -207,7 +207,7 @@ public class SC_SpawnManager : MonoBehaviour
 
     private void BasicEnemiesSpawnerRateUpTwo()
     {
-        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.6f;
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.76f;
     }
 
 
@@ -249,6 +249,7 @@ public class SC_SpawnManager : MonoBehaviour
     private void SwarmEnemiesSpawnerRateUpOne()
     {
         enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.5f;
+        enemySpawner.CurrentSpawnRate = enemySpawner.NormalCurrentSpawnRate * 0.5f;
         randomBasePowerup = true;
         randomBasePowerup = true;
         powerUpRepeatOn = true;         //deze wordt gebruikt in de repeat

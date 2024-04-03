@@ -28,9 +28,9 @@ public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter mi
     }
 
 
-    void Update()
-    {
 
+    private void FixedUpdate()
+    {
         //MovmentBounds
         if (transform.position.x >= mapWidth)      //max width x position
         {
@@ -42,10 +42,8 @@ public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter mi
         {
             cannotMoveLeft = true;
         }
-    }
 
-    private void FixedUpdate()
-    {
+
         if (wantingToMoveLeft && cannotMoveLeft == false)
         {
             thisRigidBody.MovePosition(transform.position + -movementSpeed * Time.deltaTime * Vector3.right);
@@ -81,5 +79,12 @@ public class SC_LeftToRightMover : MonoBehaviour            //voor de shooter mi
         Invoke("Move", 3);
 
     }
+
+
+    private void OnDisable()
+    {
+        if (onDeathMapMoveIncrease) { gameWorldMove.GameWolrdMoveSpeed = mapSpeedIncrease; }
+    }
+
 
 }

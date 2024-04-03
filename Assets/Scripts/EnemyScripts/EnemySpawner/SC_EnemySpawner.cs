@@ -27,6 +27,11 @@ public class SC_EnemySpawner : MonoBehaviour
 
     private bool swarmRateSet = false;
     [SerializeField] private float normalCurrentSpawnRate;      //alleen gebuirken bij swarm stuk als NIET swarm enemies worden gespawned
+    public float NormalCurrentSpawnRate
+    {
+        get { return normalCurrentSpawnRate; }
+        set { normalCurrentSpawnRate = value; }
+    }
     [SerializeField] private float currentSpawnRate;        //hier wordt offset bij gebruikt
     [SerializeField] private float spawnRateOffset;
 
@@ -81,6 +86,8 @@ public class SC_EnemySpawner : MonoBehaviour
         currentSpawnRateBase = beginSlugSpawnRate;
         currentSpawnRate = currentSpawnRateBase;
         currentLeftOrRightSpawnOffset = firstLevelLeftOrRightSpawnOffset;       //later een "if" erbij als je in een ander level spawned
+
+        normalCurrentSpawnRate = 1.5f;  //medium spawn rate
     }
 
     void Update()
