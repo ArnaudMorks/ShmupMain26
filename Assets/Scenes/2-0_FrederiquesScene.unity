@@ -19,7 +19,7 @@ RenderSettings:
   m_FogMode: 1
   m_FogDensity: 0.003
   m_LinearFogStart: 135.3
-  m_LinearFogEnd: 194.5
+  m_LinearFogEnd: 197.28
   m_AmbientSkyColor: {r: 0.23535956, g: 0.4056604, b: 0.38494432, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0.5999999, b: 1, a: 1}
   m_AmbientGroundColor: {r: 0.24688502, g: 0.4530217, b: 0.7169812, a: 1}
@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolSize: 100
   shooterPrefab: {fileID: 1733723627770000967, guid: fcee05d2aca31fa4196b15b2929972a1, type: 3}
+  normalShooterSpeed: 4
 --- !u!4 &783969411
 Transform:
   m_ObjectHideFlags: 0
@@ -3199,7 +3200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1534476945
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3852,8 +3853,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: LEVEL 1 CROOK
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e1969c43430224946b148663cb17923d, type: 2}
+  m_sharedMaterial: {fileID: 1605781415926288432, guid: e1969c43430224946b148663cb17923d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4982,7 +4983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2090751726
 Transform:
   m_ObjectHideFlags: 0
