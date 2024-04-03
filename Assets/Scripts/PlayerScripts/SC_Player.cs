@@ -31,6 +31,8 @@ public class SC_Player : MonoBehaviour
     //[SerializeField] private float canCollideKnockbackRate = 0.1f;
     //[SerializeField] private float collideKnockbackTimer;
 
+    private bool superModeOn = false;
+
     [Header("MaxMapWidth")]
     [SerializeField] private bool customWidthMode;
     [SerializeField] private float lightMapWidth = 17;
@@ -180,7 +182,7 @@ public class SC_Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         SC_EmptyBushHitRef bush = other.gameObject.GetComponent<SC_EmptyBushHitRef>();
-        if (bush != null)
+        if (bush != null && superModeOn == false)
         {
             currentMoveSpeed = slowZoneMoveSpeed;
         }
@@ -205,6 +207,7 @@ public class SC_Player : MonoBehaviour
     public void SuperShooterModeSpeed()
     {
         //powerUpUI.PowerupModeUI();
+        superModeOn = true;
         playerShooting.SuperShooterModeShooting();
         playerHealth.PlayerInvincibleMode();
         invincibilityBubble.SetActive(true);
@@ -214,6 +217,7 @@ public class SC_Player : MonoBehaviour
 
     private void EndSuperShooterMode()
     {
+        superModeOn = false;
         //powerUpUI.NormalModeUI();
         playerShooting.EndSuperShooterModeShooting();
         playerHealth.EndPlayerInvincibleMode();
