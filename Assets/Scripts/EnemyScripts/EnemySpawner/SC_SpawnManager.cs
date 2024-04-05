@@ -265,7 +265,7 @@ public class SC_SpawnManager : MonoBehaviour
     {
         enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.76f;
         enemySpawner.CurrentSpawnRate = enemySpawner.NormalCurrentSpawnRate * 0.76f;
-        Invoke("StopRepeat", 40);
+        Invoke("StopRepeat", 20);
     }
 
 }
