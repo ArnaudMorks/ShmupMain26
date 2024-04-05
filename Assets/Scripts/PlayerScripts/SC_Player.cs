@@ -41,6 +41,7 @@ public class SC_Player : MonoBehaviour
 
     [SerializeField] private float currentMapWidth;
 
+    [SerializeField] private GameObject doubleTurretModeEffect;
 
 
     void Start()
@@ -204,6 +205,13 @@ public class SC_Player : MonoBehaviour
     }
 
 
+    public void SpeedStartLevelThree()
+    {
+        setMoveSpeed += 4;
+        currentMoveSpeed = setMoveSpeed;
+    }
+
+
     public void SuperShooterModeSpeed()
     {
         //powerUpUI.PowerupModeUI();
@@ -227,7 +235,14 @@ public class SC_Player : MonoBehaviour
 
     public void SuperFireRateMode()
     {
+        doubleTurretModeEffect.SetActive(true);
+        Invoke("StopTurretModeEffect", 1);
         playerShooting.DoubleTurretsMode();
+    }
+
+    private void StopTurretModeEffect()
+    {
+        doubleTurretModeEffect.SetActive(false);
     }
 
 

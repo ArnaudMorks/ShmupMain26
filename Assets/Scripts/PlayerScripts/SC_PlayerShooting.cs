@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SC_PlayerShooting : MonoBehaviour
 {
+    private float canShootAfterTime = 2.5f;
+
     [Header("Bullet Speed")]            //was eerst een ander script
     [SerializeField] private float minPlayerBaseBulletSpeed;
     public float MinPlayerBaseBulletSpeed
@@ -64,6 +66,13 @@ public class SC_PlayerShooting : MonoBehaviour
 
     void Update()
     {
+        if (canShootAfterTime > 0)
+        {
+            canShootAfterTime -= Time.deltaTime;
+            return;
+        }
+
+
         holdingFireButton = Input.GetKey(KeyCode.Space);
 
         FireProjectile();

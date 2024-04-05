@@ -35,6 +35,10 @@ public class SC_Boss : MonoBehaviour
     private Transform _playerTransform;
     private SC_PoolBossBullets bulletPool = null;
 
+    [SerializeField] private GameObject hitEffect;
+    protected float hitEffectTotalTime = 0.02f;
+    protected float hitEffectTimer;
+
     private DashState _dashState;
 
     [Header("Dashing")]
@@ -77,6 +81,8 @@ public class SC_Boss : MonoBehaviour
     private SC_ObjectShaker _objectShaker;
     private float _storedAttackInterval;
 
+    [SerializeField] private int _scoreGain;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -98,6 +104,10 @@ public class SC_Boss : MonoBehaviour
         if (_state == BossState.arriving) { return; }
 
         _health--;
+        hitEffect.SetActive(true);
+        hitEffectTimer = 0;
+
+
         if (_health <= _totalHealth * 0.333 && !_isEnraged)
         {
             _objectShaker.ShakeObject(0.2f, 0.05f);
@@ -107,6 +117,7 @@ public class SC_Boss : MonoBehaviour
 
         if (_health <= 0 && _state != BossState.dying) 
         {
+            ServiceLocator.Main.ScoreManager.ModifyScore(_scoreGain);
             _state = BossState.dying;
             _objectShaker.ShakeObject(0.5f, 0.001f);
             StartCoroutine(Die());
@@ -140,6 +151,18 @@ public class SC_Boss : MonoBehaviour
                     StartCoroutine(LaserAttack());
                     break;
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (hitEffectTimer < hitEffectTotalTime)
+        {
+            hitEffectTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            if (hitEffect != null) { hitEffect.SetActive(false); }
         }
     }
 

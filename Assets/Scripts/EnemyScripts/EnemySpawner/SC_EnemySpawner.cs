@@ -74,6 +74,7 @@ public class SC_EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject kamikazeCircle;
     [SerializeField] private GameObject kamikazeSwarm;
     [SerializeField] private GameObject shooterSwarm;
+    [SerializeField] private GameObject slugSwarm;
 
 
     void Start()
@@ -96,7 +97,7 @@ public class SC_EnemySpawner : MonoBehaviour
         if (swarmSpawnChance == 0 && swarmRateSet == false)
         {
             normalCurrentSpawnRate = currentSpawnRate;
-            currentSpawnRate *= 3;
+            currentSpawnRate *= 2.72f;
             swarmRateSet = true;
         }
 
@@ -222,13 +223,23 @@ public class SC_EnemySpawner : MonoBehaviour
         switch (currentEnemy)
         {
             case 0:
-                Instantiate(kamikazeCircle, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                int typeSwarm = Random.Range(0, 2);
+
+                if (typeSwarm == 1)
+                {
+                    Instantiate(kamikazeCircle, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                }
+                else
+                {
+                    Instantiate(kamikazeSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                }
+
                 break;
             case 1:
-                Instantiate(kamikazeSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                Instantiate(shooterSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
                 break;
             case 2:
-                Instantiate(shooterSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
+                Instantiate(slugSwarm, new Vector3(Random.Range(maxLeftPoint, maxRightPoint), 0, transform.position.z), transform.rotation);
                 break;
             default:
                 Debug.Log("Enemy spawner werkt niet");

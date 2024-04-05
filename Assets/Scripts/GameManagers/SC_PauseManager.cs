@@ -6,10 +6,11 @@ public class SC_PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] _pauseUIObjects;
     private bool _isPaused = false;
-    
+
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && !ServiceLocator.Main.DeathScreen.PlayerIsDead )
         {
             PauseOrUnpause();
         }

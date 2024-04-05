@@ -39,6 +39,9 @@ public abstract class SC_EnemyBase : MonoBehaviour
     [SerializeField] protected GameObject powerupDrop = null;
     [SerializeField] protected GameObject _deathEffect;
 
+    [SerializeField] protected GameObject hitEffect = null;
+    protected float hitEffectTotalTime = 0.04f;
+    protected float hitEffectTimer;
 
     protected virtual void Awake()
     {
@@ -59,9 +62,23 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
     protected virtual void Update()
     {
+
+    }
+
+    protected virtual void FixedUpdate()
+    {
        // Destroy the gameObject if it goes past a certain point defined in the inspector window
         if(transform.position.z <= _despawnPoint)
             gameObject.SetActive(false);
+
+        if (hitEffectTimer < hitEffectTotalTime)
+        {
+            hitEffectTimer += Time.fixedDeltaTime;
+        }
+        else
+        {
+            if (hitEffect != null) { hitEffect.SetActive(false); }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -86,7 +103,6 @@ public abstract class SC_EnemyBase : MonoBehaviour
     {
         // Actually take damage
         _health--;
-
         
 
         // Check if the enemy is dead
@@ -98,6 +114,11 @@ public abstract class SC_EnemyBase : MonoBehaviour
 
             Instantiate(_deathEffect, transform.position, Quaternion.Euler(-90, 0, 0), null);
             gameObject.SetActive(false);
+        }
+        else
+        {
+            hitEffectTimer = 0;
+            if (hitEffect != null) { hitEffect.SetActive(true); }
         }
 
         yield return null;

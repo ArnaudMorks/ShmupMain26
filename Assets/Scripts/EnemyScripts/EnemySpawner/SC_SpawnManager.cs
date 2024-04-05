@@ -163,7 +163,6 @@ public class SC_SpawnManager : MonoBehaviour
     public void ShooterEnemySpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
     {
         enemySpawner.CurrentSpawnRate = slowSpawnRate;
-        enemySpawner.SetSpawnWidthAreaSecondLevel();
         enemySpawner.SpawnerLevel = 5;      //alleen de shooter enemy spawned nu
         //basis setting horen bij deze spawn mode
         Invoke("SpawnModeOn", 2);
@@ -186,6 +185,7 @@ public class SC_SpawnManager : MonoBehaviour
     public void BasicEnemiesSpawnMode()        //begin eerste level        wordt vanuit "SC_MapSpeedSetter" opgeroepen
     {
         enemySpawner.CurrentSpawnRate = mediumSpawnRate;
+        enemySpawner.SetSpawnWidthAreaSecondLevel();
         enemySpawner.SpawnerLevel = 4;      //alle basic enemies
         //basis setting horen bij deze spawn mode
         Invoke("SpawnModeOn", 2);
@@ -208,6 +208,8 @@ public class SC_SpawnManager : MonoBehaviour
     private void BasicEnemiesSpawnerRateUpTwo()
     {
         enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.76f;
+        enemySpawner.CurrentSpawnRate = enemySpawner.NormalCurrentSpawnRate * 0.76f;
+        //Invoke("StopRepeat", 20);
     }
 
 
@@ -256,7 +258,14 @@ public class SC_SpawnManager : MonoBehaviour
         Invoke("RandomBasePowerup", 1.8f);
         Invoke("PowerupRepeatCurrent", 1.8f);
         Invoke("RestoreHpRepeatCurrent", 1.8f);
-        Invoke("BasicEnemiesSpawnerRateUpTwo", 60);
+        Invoke("SwarmEnemiesSpawnerRateUpTwo", 60);
+    }
+
+    private void SwarmEnemiesSpawnerRateUpTwo()
+    {
+        enemySpawner.CurrentSpawnRate = enemySpawner.CurrentSpawnRate * 0.76f;
+        enemySpawner.CurrentSpawnRate = enemySpawner.NormalCurrentSpawnRate * 0.76f;
+        Invoke("StopRepeat", 40);
     }
 
 }

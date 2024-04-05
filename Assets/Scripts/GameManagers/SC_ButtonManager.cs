@@ -13,6 +13,11 @@ public class SC_ButtonManager : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

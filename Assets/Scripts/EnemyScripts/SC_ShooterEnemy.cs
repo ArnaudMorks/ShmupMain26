@@ -54,8 +54,9 @@ public class SC_ShooterEnemy : SC_EnemyBase
 
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         // Move forward
         if (_enemySpeed != 0) { _rigidBody.MovePosition(transform.position + -_enemySpeed * Time.deltaTime * Vector3.forward); }
 
